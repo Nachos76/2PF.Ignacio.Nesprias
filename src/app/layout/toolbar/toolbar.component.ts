@@ -21,6 +21,7 @@ export class ToolbarComponent implements OnInit {
       map((result) => result.matches),
       shareReplay()
     );
+  usuarioLogueado?:Usuario
   constructor(
     private breakpointObserver: BreakpointObserver,
     private usuarioService: UsuarioService,
@@ -30,6 +31,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioLogueadoPromise = this.usuarioService
       .obtenerUsuarioLogueado()
+    //  .then((usuario) => { this.usuarioLogueado = usuario})
       .catch((error) => {
         console.log(error); //Uncaught {msg: "error"}
       });
@@ -38,8 +40,15 @@ export class ToolbarComponent implements OnInit {
   toggle() {
     this.toggleSidenav.emit(true);
   }
+
   navegarA(ruta:string) {
     this.router.navigate( ["/"+ruta] )
 
   }
+
+  editarPerfil(){
+    this.usuarioService.seleccionarUsuarioLogueado()
+    this.navegarA( "form-usuarios")
+  }
+
 }

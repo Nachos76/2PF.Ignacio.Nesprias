@@ -29,7 +29,7 @@ export class FormularioUsuariosComponent implements OnInit {
     ],
     imagen: [''],
     descripcion: [''],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(8),this.passwordMatchValidator,]],
     confirmPassword: [
       '',
       [

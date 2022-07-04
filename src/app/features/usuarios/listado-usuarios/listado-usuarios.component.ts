@@ -33,20 +33,7 @@ export class ListadoUsuariosComponent implements OnInit {
     );
   }
 
-  ngOnDestroy() {
-    this.susbcriptions.unsubscribe();
-  }
-
   ngOnInit(): void {
-    // this.susbcriptions.add(
-    //   this.usuarioService.obtenerUsuarioSeleccionado().subscribe({
-    //       next: (user) => {
-    //         this.userSelect = user
-    //       }, error : (error) => {
-    //         console.error(error)
-    //       }
-    //     })
-    // )
   }
 
   seleccionarUsuario(index?: number) {

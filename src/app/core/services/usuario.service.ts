@@ -11,6 +11,8 @@ export class UsuarioService {
   usuarioSeleccionado$ = new BehaviorSubject<Usuario | null>(null);
   usuarios$ = new BehaviorSubject<Usuario[]>(this.listaUsuarios);
 
+  usuarioLogueado:Usuario = this.listaUsuarios[1]//Mock a manejar con el servicio de login
+
   constructor() {}
 
   agregarUsuario(usuario: Usuario) {
@@ -29,6 +31,13 @@ export class UsuarioService {
   seleccionarUsuarioxIndice(index?: number) {
     this.usuarioSeleccionado$.next(
       index !== undefined ? this.listaUsuarios[index] : null
+    );
+  }
+
+  seleccionarUsuarioLogueado() {
+    let itemIndex = this.listaUsuarios.findIndex(item => item.id == this.usuarioLogueado.id);
+    this.usuarioSeleccionado$.next(
+      itemIndex !== undefined ? this.listaUsuarios[itemIndex] : null
     );
   }
 
@@ -61,12 +70,12 @@ export class UsuarioService {
   obtenerUsuarioLogueado() {
     return new Promise<Usuario>((resolve, reject) => {
       if (this.listaUsuarios[1]) {
-        return resolve(this.listaUsuarios[1]);
+        return resolve(this.usuarioLogueado);
       }
       return reject({ msg: 'No existe usuario logueado' });
     });
   }
-  
+
   obtenerSiguienteId(){
     return Math.max(...this.listaUsuarios.map(o => o.id + 1))
   }

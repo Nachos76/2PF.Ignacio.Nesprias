@@ -137,6 +137,12 @@
               >
                 Longitud minima de 8 carácteres</span
               >
+              <span
+                class="mt-2 text-sm text-red-600 dark:text-red-500"
+                *ngIf="formulario.get('password')?.errors?.['mismatch'] && formulario.get('password')?.touched "
+              >
+                Las claves no coinciden</span
+              >
             </div>
             <div class="relative z-0 w-full mb-6 group">
               <input
