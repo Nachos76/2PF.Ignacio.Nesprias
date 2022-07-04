@@ -1,0 +1,10 @@
+<app-grilla #grilla
+  [titulo]="titulo"
+  [datos]="alumnos"
+  (enviarSeleccionado)="seleccionarAlumno($event)"
+  (eliminarSeleccionado)="eliminarAlumno($event)"
+  (actualizarSeleccionado)="actualizarAlumno($event)"
+  (agregarSeleccionado)="agregarAlumno($event)"
+></app-grilla>
+
+<app-detalle-alumno #DetalleModal></app-detalle-alumno>

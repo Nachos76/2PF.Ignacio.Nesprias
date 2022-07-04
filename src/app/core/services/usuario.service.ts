@@ -1,0 +1,73 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, map, of, Subject } from 'rxjs';
+import { Usuario } from '../../models/usuario.model';
+import { USUARIOS } from '../../data/mock-usuarios';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UsuarioService {
+  listaUsuarios: Usuario[] = USUARIOS;
+  usuarioSeleccionado$ = new BehaviorSubject<Usuario | null>(null);
+  usuarios$ = new BehaviorSubject<Usuario[]>(this.listaUsuarios);
+
+  constructor() {}
+
+  agregarUsuario(usuario: Usuario) {
+    this.listaUsuarios.push(usuario);
+    this.usuarios$.next(this.listaUsuarios);
+  }
+
+  obtenerUsuarios() {
+    return this.usuarios$.asObservable();
+  }
+
+  obtenerUsuarioSeleccionado() {
+    return this.usuarioSeleccionado$.asObservable();
+  }
+
+  seleccionarUsuarioxIndice(index?: number) {
+    this.usuarioSeleccionado$.next(
+      index !== undefined ? this.listaUsuarios[index] : null
+    );
+  }
+
+  borrarUsuarioporIndice(index?: number) {
+    this.listaUsuarios = this.listaUsuarios.filter((_, i) => index != i);
+    this.usuarios$.next(this.listaUsuarios);
+  }
+
+  editarUsuario(usuario: Usuario) {
+    let itemIndex = this.listaUsuarios.findIndex(item => item.id == usuario.id);
+    this.listaUsuarios[itemIndex]=usuario;
+    this.usuarios$.next(this.listaUsuarios);
+  }
+
+  buscarUsuarioxNombre(nombre: string) {
+    return of(this.listaUsuarios).pipe(
+      map((usuarios) =>
+        usuarios.filter((usuario) =>
+          (usuario.nombre + ' ' + usuario.email)
+            .toLowerCase()
+            .includes(nombre.toLowerCase())
+        )
+      ),
+      catchError((error) => {
+        throw new Error(error);
+      })
+    );
+  }
+
+  obtenerUsuarioLogueado() {
+    return new Promise<Usuario>((resolve, reject) => {
+      if (this.listaUsuarios[1]) {
+        return resolve(this.listaUsuarios[1]);
+      }
+      return reject({ msg: 'No existe usuario logueado' });
+    });
+  }
+  
+  obtenerSiguienteId(){
+    return Math.max(...this.listaUsuarios.map(o => o.id + 1))
+  }
+}

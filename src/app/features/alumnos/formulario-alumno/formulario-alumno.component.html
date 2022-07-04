@@ -1,0 +1,426 @@
+<h1
+  mat-dialog-title
+  class="bg-teal-800 text-teal-300 uppercase font-medium tracking-wider text-xs text-left px-5 py-3 shadow rounded-lg overflow-hidden"
+>
+  {{ data.title }}
+  <!-- <button mat-button class="close-icon text-xs float-right text-opacity-50 outline-none p-0 min-w-0 bg-teal-800 m-0" [mat-dialog-close]="false" >
+    <mat-icon>close</mat-icon>
+  </button> -->
+</h1>
+<div mat-dialog-content class="max-h-full">
+  
+  <form
+    class="px-5 py-3 "
+    [formGroup]="formularioAlumno"
+    (ngSubmit)="(null)"
+    novalidate
+  >
+    <div class="grid xl:grid-cols-2 xl:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="nombre"
+        />
+        <label
+          for="nombre"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Nombre<span class="text-red-600"> *</span></label
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('nombre')?.errors?.['required'] && formularioAlumno.get('nombre')?.touched "
+        >
+          Nombre es requerido</span
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('nombre')?.errors?.['minlength'] && formularioAlumno.get('nombre')?.touched "
+        >
+          Longitud minima de 3 carácteres</span
+        >
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="text"
+          name="apellido"
+          id="apellido"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="apellido"
+        />
+        <label
+          for="apellido"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Apellido<span class="text-red-600"> *</span></label
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('apellido')?.errors?.['required'] && formularioAlumno.get('apellido')?.touched  "
+        >
+          Apellido es requerido</span
+        >
+      </div>
+    </div>
+    <div class="grid xl:grid-cols-3 xl:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="number"
+          name="dni"
+          id="dni"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="dni"
+        />
+        <label
+          for="dni"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Nro Documento</label
+        >
+      </div>
+
+      <div class="flex justify-between relative z-0 w-full mb-6 group">
+        <label
+          for="sexo"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Género</label
+        >
+        <div class="flex items-center mr-4 ml-4">
+          <input
+            id="sexoM"
+            type="radio"
+            value="Masculino"
+            name="sexo"
+            class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            formControlName="sexo"
+          />
+          <label
+            for="sexo"
+            class="ml-2 mb-2 text-sm font-sm text-gray-500 dark:text-gray-400"
+            >Masculino</label
+          >
+        </div>
+        <div class="flex items-center mr-4">
+          <input
+            id="sexoF"
+            type="radio"
+            value="Femenino"
+            name="sexo"
+            class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            formControlName="sexo"
+          />
+          <label
+            for="sexo"
+            class="ml-2 mb-2 text-sm font-sm text-gray-500 dark:text-gray-400"
+            >Femenino</label
+          >
+        </div>
+        <div class="flex items-center mr-8">
+          <input
+            checked
+            id="sexoO"
+            type="radio"
+            value="Otre"
+            name="sexo"
+            class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            formControlName="sexo"
+          />
+          <label
+            for="sexo"
+            class="ml-2 mb-2 text-sm font-sm text-gray-500 dark:text-gray-400"
+            >Otre</label
+          >
+        </div>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="date"
+          name="fechaNacimiento"
+          id="fechaNacimiento"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="fechaNacimiento"
+        />
+        <label
+          for="fechaNacimiento"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Fecha de Nacimiento<span class="text-red-600"> *</span></label
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('fechaNacimiento')?.errors?.['required'] && formularioAlumno.get('fechaNacimiento')?.touched "
+        >
+          Fecha de nacimiento es requerido.
+        </span>
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('fechaNacimiento')?.errors?.['invalid'] && formularioAlumno.get('fechaNacimiento')?.touched "
+        >
+          Debe ser menor que la fecha actual</span
+        >
+      </div>
+    </div>
+    <div class="grid xl:grid-cols-2 xl:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="tel"
+          name="telefono"
+          id="telefono"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="telefono"
+        />
+        <label
+          for="telefono"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Nro de Teléfono (123-456-7890)</label
+        >
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="text"
+          name="direccion"
+          id="direccion"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="direccion"
+        />
+        <label
+          for="direccion"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Direccion</label
+        >
+      </div>
+    </div>
+    <div class="grid xl:grid-cols-3 xl:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="email"
+          name="email"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="email"
+        />
+        <label
+          for="email"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Correo electrónico<span class="text-red-600"> *</span></label
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('email')?.errors?.['required'] && formularioAlumno.get('email')?.touched "
+        >
+          Correo electrónico es requerido</span
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('email')?.errors?.['pattern'] && formularioAlumno.get('email')?.touched "
+        >
+          Debe ingresar un correo válido</span
+        >
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="password"
+        />
+        <label
+          for="password"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Clave<span class="text-red-600"> *</span></label
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('password')?.errors?.['required'] && formularioAlumno.get('password')?.touched "
+        >
+          Una clave es requerida</span
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('password')?.errors?.['minlength'] && formularioAlumno.get('password')?.touched "
+        >
+          Longitud minima de 8 carácteres</span
+        >
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+          placeholder=" "
+          formControlName="confirmPassword"
+        />
+        <label
+          for="confirmPassword"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Confirmar clave<span class="text-red-600"> *</span></label
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('confirmPassword')?.errors?.['required'] && formularioAlumno.get('confirmPassword')?.touched "
+        >
+          Reingresar la clave es requerido</span
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('confirmPassword')?.errors?.['minlength'] && formularioAlumno.get('confirmPassword')?.touched "
+        >
+          Longitud minima de 8 carácteres</span
+        >
+        <span
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+          *ngIf="formularioAlumno.get('confirmPassword')?.errors?.['mismatch'] && formularioAlumno.get('confirmPassword')?.touched "
+        >
+          Las claves no coinciden</span
+        >
+      </div>
+    </div>
+    <div class="grid xl:grid-cols-2 xl:gap-6">
+      <div class="relative z-0 w-full mb-0 group">
+        <label
+          for="descripcion"
+          class="block mb-2 text-sm font-sm text-gray-500 dark:text-gray-400"
+          >Descripción</label
+        >
+        <textarea
+          id="descripcion"
+          rows="4"
+          class="block p-2.5 w-full text-sm outline-none text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-teal-900 focus:border-teal-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+          placeholder=""
+          formControlName="descripcion"
+        ></textarea>
+      </div>
+      <div class="relative z-0 w-full mb-0 group">
+        <label
+          class="block mb-2 text-sm font-sm text-gray-500 dark:text-gray-400"
+        >
+          Avatar
+        </label>
+        <div class="mt-1 flex items-center">
+          <app-avatar [imagen]="formularioAlumno.value.imagen"></app-avatar>
+          <div class="relative z-0 w-full mb-0 group ml-3">
+            <input
+              type="text"
+              name="imagen"
+              id="imagen"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+              placeholder=" "
+              formControlName="imagen"
+            />
+            <label
+              for="imagen"
+              class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Link/URL</label
+            >
+            <p
+              id="helper-text-explanation"
+              class="mt-2 text-sm text-gray-500 dark:text-gray-400"
+            >
+              Ingrese el link al avatar creado en alguna de las herramientas
+              online existentes, como por ejemplo
+              <a
+                href="https://getavataaars.com/"
+                target="_blank"
+                class="font-medium text-teal-600 hover:underline dark:text-teal-500"
+                >getavataaars.com</a
+              >.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid xl:grid-cols-1 xl:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <mat-form-field class="w-full bg-transparent" appearance="standard">
+          <mat-label>Conocimientos previos</mat-label>
+          <mat-chip-list
+            #chipList
+            aria-label="Fruit selection"
+            formControlName="conocimientos"
+          >
+            <mat-chip
+              *ngFor="let c of formularioAlumno.get('conocimientos')?.value"
+              (removed)="remove(c)"
+              class="bg-teal-100 text-teal-800"
+            >
+              {{ c }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              placeholder="..."
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-list>
+          <mat-hint
+            >Listados de lenguages, frameworks y otras herramientas de
+            desarrollo que conoce y maneja. Ingrese una lista separada por
+            comas</mat-hint
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="relative z-0 w-full mb-6 group">
+                      <input
+                        type="text"
+                        name="cursos"
+                        id="cursos"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+                        placeholder=" "
+                        formControlName="cursos"
+                      />
+                      <label
+                        for="cursos"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >Cursos</label
+                      >
+                      <span
+                        id="helper-text-explanation"
+                        class="mt-2 text-xs text-gray-500 dark:text-gray-400"
+                      >
+                        Ingrese una lista separada por comas
+                      </span>
+                    </div>-->
+    </div>
+  </form>
+</div>
+<div
+  mat-dialog-actions
+  class="flex flex-shrink-0 flex-wrap text-right justify-end p-4"
+>
+  <div
+    class="flex-1 break-words mt-2 text-sm text-red-600 dark:text-red-500 mr-5"
+    *ngIf="formularioAlumno.invalid"
+  >
+    Los campos marcados con * son requeridos
+  </div>
+  <div class="">
+    <button
+      mat-button
+      [mat-dialog-close]="false"
+      class="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-500 active:shadow-lg transition duration-150 ease-in-out"
+    >
+      Cancelar
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="formularioAlumno.value"
+      class="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-500 active:shadow-lg transition duration-150 ease-in-out cursor-pointer disabled:cursor-not-allowed disabled:opacity-75"
+      [disabled]="formularioAlumno.invalid"
+    >
+      Guardar
+    </button>
+  </div>
+</div>

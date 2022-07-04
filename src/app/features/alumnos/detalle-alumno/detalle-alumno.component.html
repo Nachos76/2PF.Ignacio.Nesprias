@@ -1,0 +1,73 @@
+<!-- <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+  Open large modal
+</button> -->
+<div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex" >
+  <div class="relative w-auto my-6 mx-auto max-w-6xl " >
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <!-- <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Modal Title
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div> -->
+      <!--body-->
+      <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
+            <span class="bg-transparent text-black opacity-50 h-6 w-6 text-2xl block outline-none focus:outline-none">
+              ×
+            </span>
+        </button>
+        <img class="w-full h-44 object-scale-down object-center" src="{{(alumno.imagen)?reemplazarURL(alumno.imagen):defaultImagen}}" alt="avatar">
+        <div class="flex items-center px-6 py-3 bg-gray-900">
+            <i class="fa-solid fa-cake-candles text-white"></i>
+            <h1 class="mx-3 text-white font-semibold text-lg">{{alumno.fechaNacimiento | date: "dd.MM.yyyy"}}
+                (<span appContarHoy [fn]="alumno.fechaNacimiento" ></span> años)
+            </h1>
+            
+        </div>
+        <div class="py-4 px-6">
+            <h1 class="text-2xl font-semibold text-teal-800">{{alumno.nombre | nombreApellido: alumno.apellido:"apellido" }} </h1>
+            <div class="py-2 text-base text-teal-700">{{alumno.descripcion}}</div>
+
+            <div class="py-2 text-base font-semibold text-teal-700">Conocimientos previos</div>
+            <app-badge-list [items]="alumno.conocimientos"></app-badge-list>
+            
+            <div class="py-2 text-base font-semibold text-teal-700">Cursos tomados</div>
+            <app-badge-list [items]="alumno.cursos"></app-badge-list>
+
+            <div class="flex items-center mt-4 text-teal-700">
+              <mat-icon aria-label="Dirección" class=" px-2  mr-3">my_location</mat-icon>
+                <h1 class="px-2 text-sm m-0">{{alumno.direccion}}</h1>
+            </div>
+            <div class="flex items-center mt-4 text-teal-700">
+              <mat-icon aria-label="Correo elect´ronico" class="px-2  mr-3">email</mat-icon>
+                <h1 class="px-2 text-sm m-0">{{alumno.email}}</h1>
+            </div>
+            <div class="flex items-center mt-4 text-teal-700">
+              <mat-icon aria-label="Teléfono" class="px-2  mr-3">phone</mat-icon>
+                <h1 class="px-2 text-sm m-0">{{alumno.telefono}}</h1>
+            </div>
+            
+            <div class="flex items-center justify-end p-0 ">
+                <span [ngClass]="alumno.estado.toLowerCase()=='activo' ? 'text-green-900' : 'text-orange-900'"
+                class="relative inline-block px-3 py-1 font-semibold  leading-tight">
+                    <span aria-hidden
+                        [ngClass]="alumno.estado.toLowerCase()=='activo' ? 'bg-green-200' : 'bg-orange-200'"
+                        class="absolute inset-0  opacity-50 rounded-full"></span>
+                    <span class="relative">{{alumno.estado}}</span>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+  </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

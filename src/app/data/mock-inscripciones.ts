@@ -1,0 +1,162 @@
+import { Inscripcion } from '../models/inscripcion.model';
+
+export const INSCRIPCIONES: Inscripcion[] = [
+    {   id: 10001, 
+        estado:1,
+        alumno: {   
+            id: 3, 
+            nombre:"Sofia",
+            apellido: "Soule",
+            // edad:46,
+            dni:"12345678",
+            sexo:"Masculino",
+            fechaNacimiento:"1976-07-20",
+            direccion:"Al pie del Aconquija",
+            telefono:"12345678",
+            email:"sofita88@live.com" ,
+            estado:"Inactivo",
+            imagen: "/assets/avatars/av3.png",
+            conocimientos:["HTML","JavaScript","CSS"],
+            cursos:["Desarrollo Web"],
+            descripcion:"me gusta la musica, los animales y la web"
+        },
+        curso: {   
+            id:101  , 
+            nombre:"HTML + CSS"   ,
+            descripcion:"Inrducción a la web clasica, lo que ves lo tenes", 
+            fechaInicio:"2022-08-01", 
+            cantClases:16, 
+            precio:100 ,
+            capacidad:150 ,
+            estado:1  , 
+            imagen:null   
+        }
+        
+    },
+    {   id: 10002, 
+        estado:1,
+        alumno:{   
+            id: 4, 
+            nombre:"Cintia",
+            apellido: "Nañarara",
+            // edad:24,
+            dni:"12345678",
+            sexo:"Masculino",
+            fechaNacimiento:"1998-04-26",
+            direccion:"Balcarce 50",
+            telefono:"12345678",
+            email:"hnana@gmail.com" ,
+            estado:"Activo",
+            imagen: "/assets/avatars/av4.png",
+            conocimientos:[],
+            cursos:["Desarrollo Web"],
+            descripcion:"Buscando aprender para desarrollarme profesionalmente."
+        },
+        curso:{   
+            id:100  , 
+            nombre:"Angular a fondo"   ,
+            descripcion:"Posta, a fondo, 16 meses de curso, si no salis armando tu propop framework, es porque no fuiste a fondo", 
+            fechaInicio:"2022-07-01", 
+            cantClases:366, 
+            precio:1520 ,
+            capacidad:10 ,
+            estado:1  , 
+            imagen:null   
+        }
+     
+    },
+    {   id: 10003, 
+        estado:1,
+        alumno: {   
+            id: 4, 
+            nombre:"Cintia",
+            apellido: "Nañarara",
+            // edad:24,
+            dni:"12345678",
+            sexo:"Masculino",
+            fechaNacimiento:"1998-04-26",
+            direccion:"Balcarce 50",
+            telefono:"12345678",
+            email:"hnana@gmail.com" ,
+            estado:"Activo",
+            imagen: "/assets/avatars/av4.png",
+            conocimientos:[],
+            cursos:["Desarrollo Web"],
+            descripcion:"Buscando aprender para desarrollarme profesionalmente."
+        },
+        curso:{   
+            id:100  , 
+            nombre:"Angular a fondo"   ,
+            descripcion:"Posta, a fondo, 16 meses de curso, si no salis armando tu propop framework, es porque no fuiste a fondo", 
+            fechaInicio:"2022-07-01", 
+            cantClases:366, 
+            precio:1520 ,
+            capacidad:10 ,
+            estado:1  , 
+            imagen:null   
+        }
+    },
+    {   id: 10004, 
+        estado:1,
+        alumno:{   
+            id: 1, 
+            nombre:"Juan",
+            apellido:"Perez",
+            // edad:22,
+            dni:"12345678",
+            sexo:"Masculino",
+            fechaNacimiento:"2000-01-01",
+            direccion:"Av. Siempreviva 555",
+            telefono:"12345678",
+            email:"jperez99@gmail.com",
+            estado:"Inactivo",
+            imagen: "/assets/avatars/av1.png",
+            conocimientos:["Angular","JavaScript","TypeScript","C#","C++","HTML","CSS","SQL","PHP"],
+            cursos:["Angular","JavaScript","TypeScript"],
+            descripcion:"Curioso, fanatico de lo que hago."
+        },
+        curso: {   
+            id:101  , 
+            nombre:"HTML + CSS"   ,
+            descripcion:"Inrducción a la web clasica, lo que ves lo tenes", 
+            fechaInicio:"2022-08-01", 
+            cantClases:16, 
+            precio:100 ,
+            capacidad:150 ,
+            estado:1  , 
+            imagen:null   
+        }
+    },
+    {   id: 10005, 
+        estado:0,
+        alumno:{   
+            id: 2, 
+            nombre:"Santiago",
+            apellido: "Pachano",
+            // edad:23,
+            dni:"12345678",
+            sexo:"Masculino",
+            fechaNacimiento:"1999-05-23",
+            direccion:"En la sierra cordobeza",
+            telefono:"12345678",
+            email:"p4ch4n0@gmail.com" ,
+            estado:"Activo",
+            //imagen: "/assets/avatars/av2.png",
+            imagen: "",
+            //imagen: null,
+            conocimientos:["React","JavaScript","TypeScript"],
+            cursos:["JavaScript",],
+        },
+        curso:{   
+            id:103  , 
+            nombre:"Backend .Net, Api y mas"   ,
+            descripcion:"al fondo, al fondo, vemos que pasa detras de la cortina", 
+            fechaInicio:"2022-07-15", 
+            cantClases:32, 
+            precio:500 ,
+            capacidad:35 ,
+            estado:0  , 
+            imagen:null   
+        }
+    }  
+  ];
