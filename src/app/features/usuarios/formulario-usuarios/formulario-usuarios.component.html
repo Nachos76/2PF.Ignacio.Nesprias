@@ -37,7 +37,7 @@
                 class="mt-2 text-sm text-red-600 dark:text-red-500"
                 *ngIf="formulario.get('nombre')?.errors?.['minlength'] && formulario.get('nombre')?.touched "
               >
-                Longitud minima de 3 carácteres</span
+                Longitud mínima de 3 carácteres</span
               >
             </div>
             <div class="relative z-0 w-full mb-6 group">
@@ -62,7 +62,32 @@
               >
             </div>
             <div class="relative z-0 w-full mb-6 group">
-                <input
+              <mat-form-field
+                class="w-full bg-transparent -mt-6 top-0.5"
+                appearance="standard"
+              >
+                <mat-label>Rol</mat-label>
+                <mat-select
+                  formControlName="rol"
+                  required
+                  class="text-primary-800 text-sm"
+                >
+                  <mat-option
+                    *ngFor="let r of [{value:'user', name:'Usuario'}, {value:'admin',name:'Administrador'}]"
+                    [value]="r.value"
+                    class="text-primary-800 text-sm"
+                  >
+                    {{ r.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="formulario.get('rol')?.errors?.['required'] && formulario.get('rol')?.touched  "
+                  class="mt-2 text-sm text-red-600 dark:text-red-500"
+                  >Rol es requerido</mat-error
+                >
+              </mat-form-field>
+
+              <!-- <input
                   type="text"
                   name="rol"
                   id="rol"
@@ -80,8 +105,8 @@
                   *ngIf="formulario.get('rol')?.errors?.['required'] && formulario.get('rol')?.touched  "
                 >
                   Rol es requerido</span
-                >
-              </div>
+                > -->
+            </div>
           </div>
 
           <div class="grid xl:grid-cols-3 xl:gap-6">
@@ -139,7 +164,7 @@
               >
               <span
                 class="mt-2 text-sm text-red-600 dark:text-red-500"
-                *ngIf="formulario.get('password')?.errors?.['mismatch'] && formulario.get('password')?.touched "
+                *ngIf="formulario.errors?.['mismatch']  && formulario.get('password')?.touched  && formulario.get('confirmPassword')?.touched "
               >
                 Las claves no coinciden</span
               >
@@ -172,7 +197,7 @@
               >
               <span
                 class="mt-2 text-sm text-red-600 dark:text-red-500"
-                *ngIf="formulario.get('confirmPassword')?.errors?.['mismatch'] && formulario.get('confirmPassword')?.touched "
+                *ngIf="formulario.errors?.['mismatch']  && formulario.get('password')?.touched  && formulario.get('confirmPassword')?.touched "
               >
                 Las claves no coinciden</span
               >
@@ -200,9 +225,7 @@
                 Avatar
               </label>
               <div class="mt-1 flex items-center">
-                <app-avatar
-                  [imagen]="formulario.value.imagen"
-                ></app-avatar>
+                <app-avatar [imagen]="formulario.value.imagen"></app-avatar>
                 <div class="relative z-0 w-full mb-0 group ml-3">
                   <input
                     type="text"

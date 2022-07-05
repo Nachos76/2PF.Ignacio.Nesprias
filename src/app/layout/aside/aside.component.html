@@ -9,32 +9,28 @@
   >
     <!-- <mat-toolbar>Menu</mat-toolbar> -->
     <mat-nav-list>
-      <button mat-list-item  routerLink="cursos"
-        ><mat-icon aria-label="Listado de cursos" class="mr-3"
+      <button mat-list-item routerLink="cursos">
+        <mat-icon aria-label="Listado de cursos" class="mr-3"
           >cast_for_education</mat-icon
         >
-        Cursos</button
-      >
+        Cursos
+      </button>
       <button mat-list-item routerLink="alumnos">
-        <mat-icon aria-label="Listado de alumnos" class="mr-3">groups</mat-icon>
-        Alumnos</button
-      >
-      <button mat-list-item routerLink="inscripciones"
-        ><mat-icon aria-label="Listado de cursos" class="mr-3"
-          >cast_for_education</mat-icon
-        >
-        Inscripciones</button
-      >
-      <button mat-list-item routerLink="usuarios"
-        ><mat-icon aria-label="Listado de cursos" class="mr-3"
-          >cast_for_education</mat-icon
-        >
-        Usuarios</button
-      >
+        <mat-icon aria-label="Listado de alumnos" class="mr-3">school</mat-icon>
+        Alumnos
+      </button>
+      <button mat-list-item routerLink="inscripciones">
+        <mat-icon aria-label="Listado de cursos" class="mr-3">draw</mat-icon>
+        Inscripciones
+      </button>
+      <button mat-list-item routerLink="usuarios">
+        <mat-icon aria-label="Listado de cursos" class="mr-3">group</mat-icon>
+        Usuarios
+      </button>
       <button mat-list-item (click)="drawer.toggle()">
         <mat-icon aria-label="Listado de cursos" class="mr-3">close</mat-icon>
-        Cerrar</button
-      >
+        Cerrar
+      </button>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -43,6 +39,5 @@
     <div class="max-w-full w-screen bg-primary-50 flex flex-grow flex-row">
       <app-main class="w-full"></app-main>
     </div>
-    
   </mat-sidenav-content>
 </mat-sidenav-container>

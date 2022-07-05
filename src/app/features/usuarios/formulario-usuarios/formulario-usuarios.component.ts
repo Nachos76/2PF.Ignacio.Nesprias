@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
@@ -15,30 +20,27 @@ export class FormularioUsuariosComponent implements OnInit {
   titulo: string = 'Ingresar nuevo usuario';
   susbcriptions: Subscription = new Subscription();
 
-  formulario = this.fb.group({
-    id: [''],
-    nombre: ['', [Validators.required, Validators.minLength(3)]],
-    apellido: ['', [Validators.required]],
-    rol: ['', [Validators.required]],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+  formulario = this.fb.group(
+    {
+      id: [''],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      apellido: ['', [Validators.required]],
+      rol: ['', [Validators.required]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+        ],
       ],
-    ],
-    imagen: [''],
-    descripcion: [''],
-    password: ['', [Validators.required, Validators.minLength(8),this.passwordMatchValidator,]],
-    confirmPassword: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(8),
-        this.passwordMatchValidator,
-      ],
-    ],
-  });
+      imagen: [''],
+      descripcion: [''],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+    },
+    { validator: this.passwordMatchValidator }
+  );
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -67,8 +69,8 @@ export class FormularioUsuariosComponent implements OnInit {
   }
 
   passwordMatchValidator(g: AbstractControl) {
-    return g.parent?.get('password')?.value ===
-      g.parent?.get('confirmPassword')?.value
+    return g.get('password')?.value ===
+      g.get('confirmPassword')?.value
       ? null
       : { mismatch: true };
   }
@@ -80,7 +82,7 @@ export class FormularioUsuariosComponent implements OnInit {
   agregarUsuario(usuario: Usuario) {
     if (usuario.id) {
       //es usuario existente
-      this.usuarioService.editarUsuario(usuario)
+      this.usuarioService.editarUsuario(usuario);
     } else {
       //es nuevo usuario
       usuario.id = this.usuarioService.obtenerSiguienteId();

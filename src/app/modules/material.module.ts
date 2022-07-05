@@ -14,7 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
-// import { MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 // import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,7 +37,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTableModule,
     MatMenuModule,
     MatRadioModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

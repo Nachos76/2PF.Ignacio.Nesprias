@@ -56,7 +56,7 @@ export class UsuarioService {
     return of(this.listaUsuarios).pipe(
       map((usuarios) =>
         usuarios.filter((usuario) =>
-          (usuario.nombre + ' ' + usuario.email)
+          (usuario.nombre + ' ' + usuario.apellido + ' ' + usuario.email + ' ' + usuario.rol + ' ' + usuario.id)
             .toLowerCase()
             .includes(nombre.toLowerCase())
         )

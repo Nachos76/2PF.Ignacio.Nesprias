@@ -70,4 +70,13 @@ export class ListadoUsuariosComponent implements OnInit {
     this.usuarioService.seleccionarUsuarioxIndice(-1);
     this.router.navigate(['/form-usuarios']);
   }
+
+  buscar(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.tableDataSource$ = this.usuarioService.buscarUsuarioxNombre(filterValue).pipe(
+      map((usuarios) => new MatTableDataSource<Usuario>(usuarios))
+    );
+
+  }
+
 }
