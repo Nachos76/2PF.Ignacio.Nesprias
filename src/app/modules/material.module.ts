@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -38,7 +39,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatMenuModule,
     MatRadioModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

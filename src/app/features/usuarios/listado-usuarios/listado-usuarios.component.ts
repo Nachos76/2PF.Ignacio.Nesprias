@@ -38,6 +38,7 @@ export class ListadoUsuariosComponent implements OnInit {
 
   seleccionarUsuario(index?: number) {
     this.usuarioService.seleccionarUsuarioxIndice(index);
+    this.router.navigate(['/usuarios/detalle']);
   }
 
   eliminarUsuario(index?: number, item?: Usuario) {
@@ -63,12 +64,12 @@ export class ListadoUsuariosComponent implements OnInit {
 
   editarUsuario(index?: number) {
     this.usuarioService.seleccionarUsuarioxIndice(index);
-    this.router.navigate(['/form-usuarios']);
+    this.router.navigate(['/usuarios/form-usuarios']);
   }
 
   agregarUsuario() {
     this.usuarioService.seleccionarUsuarioxIndice(-1);
-    this.router.navigate(['/form-usuarios']);
+    this.router.navigate(['/usuarios/form-usuarios']);
   }
 
   buscar(event: Event) {

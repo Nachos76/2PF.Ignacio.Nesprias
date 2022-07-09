@@ -91,4 +91,8 @@ export class FormularioUsuariosComponent implements OnInit {
     this.router.navigate(['/usuarios']);
     this.formulario.reset();
   }
+
+  volver(): void {
+    this.router.navigate(['/usuarios']);
+  }
 }

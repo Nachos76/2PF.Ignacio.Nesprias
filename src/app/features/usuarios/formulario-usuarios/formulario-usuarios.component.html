@@ -3,11 +3,13 @@
     <app-titulo-grilla
       [titulo]="titulo"
       [incluirNuevo]="false"
+      [incluirVolver]="true"
+      (volverClicked)="volver()"
     ></app-titulo-grilla>
     <div class="flex flex-col -mx-4 sm:-mx-8 px-4 sm:px-8">
       <div class="flex flex-row justify-center p-2">
         <form
-          class="mat-elevation-z8 w-full rounded-lg overflow-hidden bg-white px-5 py-6"
+          class="mat-elevation-z8 w-full rounded-lg overflow-hidden bg-white dark:bg-default-600 px-5 py-6"
           [formGroup]="formulario"
           (ngSubmit)="(null)"
           novalidate
@@ -70,14 +72,14 @@
                 <mat-select
                   formControlName="rol"
                   required
-                  class="text-primary-800 text-sm"
+                  class="text-primary-800 text-sm dark:text-default-200"
                 >
                   <mat-option
-                    *ngFor="let r of [{value:'user', name:'Usuario'}, {value:'admin',name:'Administrador'}]"
+                    *ngFor="let r of [{value:'user'}, {value:'admin'}]"
                     [value]="r.value"
-                    class="text-primary-800 text-sm"
+                    class="text-primary-800 text-sm dark:text-default-200 dark:bg-default-800"
                   >
-                    {{ r.name }}
+                    {{ r.value | visRoles}}
                   </mat-option>
                 </mat-select>
                 <mat-error
@@ -213,7 +215,7 @@
               <textarea
                 id="descripcion"
                 rows="4"
-                class="block p-2.5 w-full text-sm outline-none text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-teal-900 focus:border-teal-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                class="block p-2.5 w-full text-sm outline-none text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-teal-900 focus:border-teal-900 dark:bg-default-700 dark:border-default-600 dark:placeholder-default-400 dark:text-white dark:focus:ring-default-500 dark:focus:border-default-500"
                 placeholder=""
                 formControlName="descripcion"
               ></textarea>

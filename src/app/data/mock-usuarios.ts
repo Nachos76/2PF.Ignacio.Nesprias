@@ -12,7 +12,8 @@ export const USUARIOS: Usuario[] = [
         rol: Roles.USER,
         estado:1,   //activo
         imagen: "/assets/avatars/av1.png",
-        descripcion:"Curioso, fanatico de lo que hago."
+        descripcion:"Curioso, fanatico de lo que hago.",
+        fechaAlta:'2021-10-06'
     },
     {   id: 2002, 
         nombre:"Roberto",
@@ -23,7 +24,8 @@ export const USUARIOS: Usuario[] = [
         rol: Roles.ADMIN,
         estado:1,   //activo
         imagen: "/assets/avatars/av2.png",
-        descripcion:"El serio administrador de siempre, je"
+        descripcion:"El serio administrador de siempre, je",
+        fechaAlta:'2020-02-06'
     },
     {   id: 2003, 
         nombre:"Lucy",
@@ -34,6 +36,7 @@ export const USUARIOS: Usuario[] = [
         rol: Roles.USER,
         estado:0,   //activo
         imagen: "/assets/avatars/av7.png",
-        descripcion:"Mejor me borro de acá"
+        descripcion:"Mejor me borro de acá",
+        fechaAlta:'2021-07-23'
     }  
   ];

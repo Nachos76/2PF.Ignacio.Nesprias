@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ProgramacionReactiva.Ignacio.Nesprias';
+  title = '2PF.Ignacio.Nesprias';
   openSidenav = false;
 }

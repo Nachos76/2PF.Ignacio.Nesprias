@@ -7,7 +7,8 @@ export interface Usuario {
     password?:string //password del usuario
     confirmPassword?:string, //confirmacion password del usuario
     rol:Roles, //rol del usuario
-    estado:Number   //estado del usuario //Activo-inactiva
+    estado:number   //estado del usuario //Activo-inactiva
     imagen:string|null   //imagen del usuario
     descripcion?:string   //descripcion/presentacion del usuario
+    fechaAlta?:string //fecha alta del usuario
 }

@@ -11,8 +11,12 @@ export class TituloGrillaComponent implements OnInit {
   titulo!:string
   @Input()
   incluirNuevo!:boolean
+  @Input()
+  incluirVolver!:boolean
   @Output()
   nuevoClicked = new EventEmitter<any>();  
+  @Output()
+  volverClicked = new EventEmitter<any>();  
   
   constructor() { }
 
@@ -22,4 +26,8 @@ export class TituloGrillaComponent implements OnInit {
   agregarItem(){
     this.nuevoClicked.emit();  
   }
+  volver(){
+    this.volverClicked.emit();  
+  }
+
 }

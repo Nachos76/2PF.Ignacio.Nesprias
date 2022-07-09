@@ -12,25 +12,20 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { MainComponent } from './layout/main/main.component';
 import { ListadoAlumnosComponent } from './features/alumnos/listado-alumnos/listado-alumnos.component';
-import { AvatarComponent } from './shared/components/avatar/avatar.component';
-import { BadgeComponent } from './shared/components/badge/badge.component';
-import { BadgeListComponent } from './shared/components/badge-list/badge-list.component';
-import { ContarHoyDirective } from './shared/directives/contar-hoy.directive';
 import { DetalleAlumnoComponent } from './features/alumnos/detalle-alumno/detalle-alumno.component';
 
 import { GrillaComponent } from './shared/components/grilla/grilla.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
-import { NombreApellidoPipe } from './shared/pipes/nombre-apellido.pipe';
-import { EsTituloDirective } from './shared/directives/es-titulo.directive';
-import { ConfirmDialogComponent } from './shared/components/Dialogs/confirm-dialog/confirm-dialog.component';
 import { FormularioAlumnoComponent } from './features/alumnos/formulario-alumno/formulario-alumno.component';
 import { ListadoCursosComponent } from './features/cursos/listado-cursos/listado-cursos.component';
-import { ListadoInscripcionesComponent } from './features/inscripciones/listado-inscripciones/listado-inscripciones.component';
-import { ListadoUsuariosComponent } from './features/usuarios/listado-usuarios/listado-usuarios.component';
-import { TituloGrillaComponent } from './shared/components/titulo-grilla/titulo-grilla.component';
-import { FormularioUsuariosComponent } from './features/usuarios/formulario-usuarios/formulario-usuarios.component';
 
+
+import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
+import { UsuariosRoutingModule } from './features/usuarios/usuarios-routing.module';
+import { AuthModule } from './core/auth/auth.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -41,29 +36,21 @@ import { FormularioUsuariosComponent } from './features/usuarios/formulario-usua
     MainComponent,
     ListadoAlumnosComponent,
     GrillaComponent,
-    ContarHoyDirective,
-    AvatarComponent,
-    BadgeListComponent,
-    BadgeComponent,
     DetalleAlumnoComponent,
-
     NavigationComponent,
-    NombreApellidoPipe,
-    EsTituloDirective,
-    ConfirmDialogComponent,
     FormularioAlumnoComponent,
-    ListadoCursosComponent,
-    ListadoInscripcionesComponent,
-    ListadoUsuariosComponent,
-    TituloGrillaComponent,
-    FormularioUsuariosComponent
+    
+
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    SharedModule,
+    AuthModule,
+    LayoutModule,
   ],
   providers: [ThemeInitializerProvider],
   bootstrap: [AppComponent],

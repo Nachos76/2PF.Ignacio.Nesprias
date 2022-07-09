@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ProgramacionReactiva.Ignacio.Nesprias'`, () => {
+  it(`should have as title '2PF.Ignacio.Nesprias'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ProgramacionReactiva.Ignacio.Nesprias');
+    expect(app.title).toEqual('2PF.Ignacio.Nesprias');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ProgramacionReactiva.Ignacio.Nesprias app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('2PF.Ignacio.Nesprias app is running!');
   });
 });
