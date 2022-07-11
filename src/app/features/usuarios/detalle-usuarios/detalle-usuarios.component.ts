@@ -26,7 +26,6 @@ export class DetalleUsuariosComponent implements OnInit {
           if (usuario) {
             this.usuario = usuario;
           } else {
-            usuario;
             this.usuario = undefined;
           }
         },

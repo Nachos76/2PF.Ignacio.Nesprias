@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BadgeListComponent implements OnInit {
   @Input()
-    items!:string[]
+    items!:string[]|undefined
   color:string = "gray"
   texto:string = "hola"
   constructor() { }

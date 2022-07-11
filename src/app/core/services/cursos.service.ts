@@ -12,8 +12,6 @@ export class CursosService {
   cursoSeleccionado$ = new BehaviorSubject<Curso | null>(null);
   cursos$ = new BehaviorSubject<Curso[]>(this.listaCursos);
 
-
-
   constructor() {}
 
   agregarCurso(curso: Curso) {
@@ -21,7 +19,7 @@ export class CursosService {
     this.cursos$.next(this.listaCursos);
   }
 
-  obtenerCurso() {
+  obtenerCursos() {
     return this.cursos$.asObservable();
   }
 
@@ -35,7 +33,20 @@ export class CursosService {
     );
   }
 
+  seleccionarCursoxId(id?: number) {
+    let index = this.listaCursos.findIndex(item => item.id == id);
+    this.cursoSeleccionado$.next(
+      index !== undefined ? this.listaCursos[index] : null
+    );
+  }
+
   borrarCursoporIndice(index?: number) {
+    this.listaCursos = this.listaCursos.filter((_, i) => index != i);
+    this.cursos$.next(this.listaCursos);
+  }
+
+  borrarCursoporId(id?: number) {
+    let index = this.listaCursos.findIndex(item => item.id == id);
     this.listaCursos = this.listaCursos.filter((_, i) => index != i);
     this.cursos$.next(this.listaCursos);
   }

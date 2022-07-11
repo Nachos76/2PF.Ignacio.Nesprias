@@ -9,7 +9,7 @@ export interface Alumno {
     direccion:string    //direccion del alumno
     telefono:string   //telefono del alumno
     email:string    //email del alumno
-    estado:string   //estado del alumno
+    estado:number   //estado del alumno
     conocimientos:string[]   //conocimientos del alumno
     cursos:string[]   //cursos del alumno
     imagen:string|null   //imagen del alumno

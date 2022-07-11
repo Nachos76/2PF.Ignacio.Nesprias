@@ -34,11 +34,24 @@ export class UsuarioService {
     );
   }
 
+  seleccionarUsuarioxId(id?: number) {
+    let index = this.listaUsuarios.findIndex(item => item.id == id);
+    this.usuarioSeleccionado$.next(
+      index !== undefined ? this.listaUsuarios[index] : null
+    );
+  }
+
   seleccionarUsuarioLogueado() {
     let itemIndex = this.listaUsuarios.findIndex(item => item.id == this.usuarioLogueado.id);
     this.usuarioSeleccionado$.next(
       itemIndex !== undefined ? this.listaUsuarios[itemIndex] : null
     );
+  }
+
+  borrarUsuarioporId(id?: number) {
+    let index = this.listaUsuarios.findIndex(item => item.id == id);
+    this.listaUsuarios = this.listaUsuarios.filter((_, i) => index != i);
+    this.usuarios$.next(this.listaUsuarios);
   }
 
   borrarUsuarioporIndice(index?: number) {

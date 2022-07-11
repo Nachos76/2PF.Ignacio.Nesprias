@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';

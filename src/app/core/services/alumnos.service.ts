@@ -15,7 +15,7 @@ export class AlumnosService {
 
   constructor() {}
 
-  agregarUsuario(alumnos: Alumno) {
+  agregarAlumno(alumnos: Alumno) {
     this.listaAlumnos.push(alumnos);
     this.alumnos$.next(this.listaAlumnos);
   }
@@ -34,7 +34,20 @@ export class AlumnosService {
     );
   }
 
+  seleccionarAlumnoxId(id?: number) {
+    let index = this.listaAlumnos.findIndex(item => item.id == id);
+    this.alumnosSeleccionado$.next(
+      index !== undefined ? this.listaAlumnos[index] : null
+    );
+  }
+
   borrarAlumnoporIndice(index?: number) {
+    this.listaAlumnos = this.listaAlumnos.filter((_, i) => index != i);
+    this.alumnos$.next(this.listaAlumnos);
+  }
+
+  borrarAlumnoporId(id?: number) {
+    let index = this.listaAlumnos.findIndex(item => item.id == id);
     this.listaAlumnos = this.listaAlumnos.filter((_, i) => index != i);
     this.alumnos$.next(this.listaAlumnos);
   }

@@ -11,6 +11,7 @@ import { NombreApellidoPipe } from './pipes/nombre-apellido.pipe';
 import { MaterialModule } from '../modules/material.module';
 import { VisEstadoPipe } from './pipes/vis-estado.pipe';
 import { VisRolesPipe } from './pipes/vis-roles.pipe';
+import { GrillaComponent } from './components/grilla/grilla.component';
 
 
 
@@ -27,6 +28,7 @@ import { VisRolesPipe } from './pipes/vis-roles.pipe';
     TituloGrillaComponent,
     VisEstadoPipe,
     VisRolesPipe,
+    GrillaComponent
 
   ],
   imports: [
@@ -44,6 +46,7 @@ import { VisRolesPipe } from './pipes/vis-roles.pipe';
     TituloGrillaComponent,
     VisEstadoPipe,
     VisRolesPipe,
+    GrillaComponent
   ]
 })
 export class SharedModule { }

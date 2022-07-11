@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,13 +20,15 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { FormularioAlumnoComponent } from './features/alumnos/formulario-alumno/formulario-alumno.component';
 import { ListadoCursosComponent } from './features/cursos/listado-cursos/listado-cursos.component';
 
-
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { UsuariosRoutingModule } from './features/usuarios/usuarios-routing.module';
 import { AuthModule } from './core/auth/auth.module';
 import { LayoutModule } from './layout/layout.module';
 
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,13 +36,7 @@ import { LayoutModule } from './layout/layout.module';
     ToolbarComponent,
     AsideComponent,
     MainComponent,
-    ListadoAlumnosComponent,
-    GrillaComponent,
-    DetalleAlumnoComponent,
     NavigationComponent,
-    FormularioAlumnoComponent,
-    
-
   ],
   imports: [
     CommonModule,
@@ -52,7 +48,7 @@ import { LayoutModule } from './layout/layout.module';
     AuthModule,
     LayoutModule,
   ],
-  providers: [ThemeInitializerProvider],
+  providers: [ThemeInitializerProvider, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

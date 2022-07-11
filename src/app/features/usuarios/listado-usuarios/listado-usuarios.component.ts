@@ -18,7 +18,7 @@ export class ListadoUsuariosComponent implements OnInit {
   displayedColumnsTable = ['id', 'nombre', 'email', 'rol', 'actions'];
   tableDataSource$: Observable<MatTableDataSource<Usuario>> | undefined;
 
-  userSelect: Usuario | null = null;
+  // userSelect: Usuario | null = null;
 
   susbcriptions: Subscription = new Subscription();
 
@@ -36,12 +36,12 @@ export class ListadoUsuariosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seleccionarUsuario(index?: number) {
-    this.usuarioService.seleccionarUsuarioxIndice(index);
+  seleccionarUsuario(id?: number) {
+    this.usuarioService.seleccionarUsuarioxId(id);
     this.router.navigate(['/usuarios/detalle']);
   }
 
-  eliminarUsuario(index?: number, item?: Usuario) {
+  eliminarUsuario(item?: Usuario) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: 'Confirmar borrado',
@@ -57,13 +57,13 @@ export class ListadoUsuariosComponent implements OnInit {
     );
     confirmDialog.afterClosed().subscribe((result) => {
       if (result === true) {
-        this.usuarioService.borrarUsuarioporIndice(index);
+        this.usuarioService.borrarUsuarioporId(item?.id);
       }
     });
   }
 
-  editarUsuario(index?: number) {
-    this.usuarioService.seleccionarUsuarioxIndice(index);
+  editarUsuario(id?: number) {
+    this.usuarioService.seleccionarUsuarioxId(id);
     this.router.navigate(['/usuarios/form-usuarios']);
   }
 

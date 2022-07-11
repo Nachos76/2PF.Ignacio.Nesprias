@@ -1,15 +1,212 @@
 <div class="mx-auto px-4 sm:px-8">
-    <div class="py-2">
-      <app-titulo-grilla
-        [titulo]="titulo"
-        [incluirNuevo]="false"
-  
-      ></app-titulo-grilla>
-      <div class="flex flex-col -mx-4 sm:-mx-8 px-4 sm:px-8">
+  <div class="py-2">
+    <app-titulo-grilla
+      [titulo]="titulo"
+      [incluirNuevo]="false"
+      [incluirVolver]="true"
+      (volverClicked)="volver()"
+    ></app-titulo-grilla>
+    <div
+      *ngIf="curso; else nada"
+      class="flex flex-col -mx-4 sm:-mx-8 px-4 sm:px-8"
+    >
+      <div class="flex flex-row justify-center p-2">
         <div
-          class="flex flex-row justify-center p-2"
+          class="md:flex no-wrap md:-mx-2 rounded-lg overflow-hidden bg-primary-50 dark:bg-default-600 px-5 py-6"
         >
+          <!-- Left Side -->
+          <div class="w-full md:w-3/12 md:mx-2">
+            <div
+              class="rounded-lg overflow-hidden bg-primary-100 dark:bg-default-700 p-3 border-t-4 border-primary-400"
+            >
+              <div class="image overflow-hidden">
+                <img
+                  class="h-auto w-full mx-auto"
+                  src="{{ curso?.imagen }}"
+                  alt=""
+                />
+              </div>
+              <h1
+                class="text-primary-900 dark:text-default-100 font-bold text-xl leading-8 my-1"
+              >
+                {{
+                  curso?.nombre 
+                }}
+              </h1>
+              <h3
+                class="text-primary-600 dark:text-default-100 font-lg text-semibold leading-6"
+              >
+                {{ curso?.precio | currency:"ARS":"symbol"}}
+              </h3>
+              <p
+                class="text-sm text-primary-500 dark:text-default-100 hover:text-primary-600 leading-6"
+              >
+                {{ curso?.descripcion }}
+              </p>
+              <ul
+                class="bg-primary-200 dark:bg-default-600 text-primary-600 dark:text-default-100 hover:text-primary-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm"
+              >
+                <li class="flex items-center py-3">
+                  <span>Estado</span>
+                  <span class="ml-auto"
+                    ><span
+                      [ngClass]="
+                        curso?.estado == 1
+                          ? 'bg-primary-500'
+                          : 'bg-danger-500'
+                      "
+                      class="py-1 px-2 rounded text-white text-sm"
+                      >{{ curso?.estado | visEstado }}</span
+                    ></span
+                  >
+                </li>
+                <li class="flex items-center py-3">
+                  <span>Fecha de inicio</span>
+                  <span class="ml-auto">{{ curso?.fechaInicio | date }}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="my-4"></div>
+          </div>
+          <!-- Right Side -->
+          <div class="w-full md:w-9/12 mx-2 h-64">
+            <div
+              class="rounded-lg overflow-hidden bg-white dark:bg-default-700 p-3 shadow-sm dark:text-default-100"
+            >
+              <div
+                class="flex items-center space-x-2 font-semibold text-primary-900 dark:text-default-100 leading-8"
+              >
+                <mat-icon clas="text-prymary-500 dark:text-default-100"
+                  >cast_for_education</mat-icon
+                >
+                <span class="tracking-wide">Detalles</span>
+              </div>
+              <div class="text-primary-700 dark:text-default-100">
+                <div class="grid md:grid-cols-2 text-sm">
+                  <div class="grid grid-cols-2">
+                    <div class="px-4 py-2 font-semibold">Nombre</div>
+                    <div class="px-4 py-2">{{ curso?.nombre }}</div>
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <div class="px-4 py-2 font-semibold">Cantidad de clases</div>
+                    <div class="px-4 py-2">{{ curso?.cantClases }}</div>
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <div class="px-4 py-2 font-semibold">Precio</div>
+                    <div class="px-4 py-2">{{ curso?.precio | currency:"ARS":"symbol" }}</div>
+                  </div>
+                  <!-- <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Contact No.</div>
+                              <div class="px-4 py-2">+11 998001001</div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Current Address</div>
+                              <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Permanant Address</div>
+                              <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
+                          </div> -->
+                  <div class="grid grid-cols-2">
+                    <div class="px-4 py-2 font-semibold">
+                      Capacidad
+                    </div>
+                    <div class="px-4 py-2">
+                     {{ curso?.capacidad }}
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <div class="px-4 py-2 font-semibold">Fecha de inicio</div>
+                    <div class="px-4 py-2">{{ curso?.fechaInicio | date }}</div>
+                  </div>
+                </div>
+              </div>
+              <!-- <button
+                      class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
+                      Full Information</button> -->
+            </div>
+            <!-- End of about section -->
+
+            <div class="my-4"></div>
+
+            <!-- Experience and education -->
+            <!-- <div class="rounded-lg overflow-hidden bg-white dark:bg-default-700 p-3 shadow-sm">
+  
+                  <div class="grid grid-cols-2">
+                      <div>
+                          <div class="flex items-center space-x-2 font-semibold text-primary-700 dark:text-default-100 leading-8 mb-3">
+                              <span clas="text-green-500">
+                                  <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                      stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                  </svg>
+                              </span>
+                              <span class="tracking-wide">Experience</span>
+                          </div>
+                          <ul class="list-inside space-y-2">
+                              <li>
+                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
+                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
+                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
+                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
+                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                          </ul>
+                      </div>
+                      <div>
+                          <div class="flex items-center space-x-2 font-semibold text-primary-700 dark:text-default-100 leading-8 mb-3">
+                              <span clas="text-green-500">
+                                  <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                      stroke="currentColor">
+                                      <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+                                      <path fill="#fff"
+                                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                                  </svg>
+                              </span>
+                              <span class="tracking-wide">Education</span>
+                          </div>
+                          <ul class="list-inside space-y-2">
+                              <li>
+                                  <div class="text-primary-600 dark:text-default-100">Masters Degree in Oxford</div>
+                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                  <div class="text-primary-600 dark:text-default-100">Bachelors Degreen in LPU</div>
+                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                 
+              </div> -->
+            <!-- End of profile tab -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<ng-template #nada>
+  <div class="flex flex-col -mx-4 sm:-mx-8 px-4 sm:px-8">
+    <div class="flex flex-row justify-center p-2">
+      <div
+        class="w-full px-5 py-3 text-danger-300 uppercase font-medium text-center"
+      >
+        No hay curso seleccionado
+      </div>
+    </div>
   </div>
+</ng-template>

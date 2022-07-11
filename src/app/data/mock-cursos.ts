@@ -8,7 +8,7 @@ export const CURSOS: Curso[] = [
         precio:1520 ,
         capacidad:10 ,
         estado:1  , 
-        imagen:null   
+        imagen:"https://1.bp.blogspot.com/-MwJI22_Ek_0/XJQEjL9WGjI/AAAAAAAAJSs/Kd9WAGTItDoTRoaIFLE8qwOrj3STIMbfQCK4BGAYYCw/s1600/logo%2Bangular%2Bicon.png"   
     },
     {   id:101  , 
         nombre:"HTML + CSS"   ,
@@ -18,7 +18,7 @@ export const CURSOS: Curso[] = [
         precio:100 ,
         capacidad:150 ,
         estado:1  , 
-        imagen:null   
+        imagen:"https://clipground.com/images/html-logo-png-1.jpg"   
     },
     {   id:103  , 
         nombre:"Backend .Net, Api y mas"   ,
@@ -28,7 +28,7 @@ export const CURSOS: Curso[] = [
         precio:500 ,
         capacidad:35 ,
         estado:0  , 
-        imagen:null   
+        imagen:"https://logos-download.com/wp-content/uploads/2017/07/Microsoft_.NET_logo.png"   
     },
     {   id:104  , 
         nombre:"Backend .Net, Api y mas V2"   ,
@@ -38,6 +38,6 @@ export const CURSOS: Curso[] = [
         precio:500 ,
         capacidad:35 ,
         estado:1  , 
-        imagen:null   
+        imagen:"https://i0.wp.com/windtux.com/wp-content/uploads/2017/10/net-framework-logo.jpg?w=1000&ssl=1"   
     }
   ];

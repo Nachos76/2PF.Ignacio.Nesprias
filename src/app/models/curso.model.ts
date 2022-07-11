@@ -6,7 +6,7 @@ export interface Curso {
     cantClases:number, //cantidad clases del curso
     precio:number //precio del curso
     capacidad:number //Cantidad de inscripciones posibles
-    estado:number   //estado del usuario //Activo-inactiva
+    estado:number   //estado del curso //Activo-inactiva
     imagen:string|null   //logo del curso si lo tiene
 }
 

@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/modules/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DetalleCursosComponent } from './detalle-cursos/detalle-cursos.component';
 import { FormularioCursosComponent } from './formulario-cursos/formulario-cursos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormularioCursosComponent } from './formulario-cursos/formulario-cursos
   imports: [
     CommonModule,
     CursosRoutingModule,
+    ReactiveFormsModule ,
     MaterialModule,
     SharedModule
   ]
