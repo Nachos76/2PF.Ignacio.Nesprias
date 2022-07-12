@@ -4,5 +4,6 @@ export interface Inscripcion {
     id:number,
     curso:Curso,
     alumno:Alumno,
-    estado:number
+    estado:number,
+    fecha?:string
 }

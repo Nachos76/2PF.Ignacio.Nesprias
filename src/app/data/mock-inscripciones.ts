@@ -3,6 +3,7 @@ import { Inscripcion } from '../models/inscripcion.model';
 export const INSCRIPCIONES: Inscripcion[] = [
     {   id: 10001, 
         estado:1,
+        fecha:"2022-05-16",
         alumno: {   
             id: 3, 
             nombre:"Sofia",
@@ -35,6 +36,7 @@ export const INSCRIPCIONES: Inscripcion[] = [
     },
     {   id: 10002, 
         estado:1,
+        fecha:"2022-07-16",
         alumno:{   
             id: 4, 
             nombre:"Cintia",
@@ -67,6 +69,7 @@ export const INSCRIPCIONES: Inscripcion[] = [
     },
     {   id: 10003, 
         estado:1,
+        fecha:"2022-07-01",
         alumno: {   
             id: 4, 
             nombre:"Cintia",
@@ -98,6 +101,7 @@ export const INSCRIPCIONES: Inscripcion[] = [
     },
     {   id: 10004, 
         estado:1,
+        fecha:"2022-06-16",
         alumno:{   
             id: 1, 
             nombre:"Juan",
@@ -129,6 +133,7 @@ export const INSCRIPCIONES: Inscripcion[] = [
     },
     {   id: 10005, 
         estado:0,
+        fecha:"2022-07-16",
         alumno:{   
             id: 2, 
             nombre:"Santiago",
@@ -156,7 +161,7 @@ export const INSCRIPCIONES: Inscripcion[] = [
             precio:500 ,
             capacidad:35 ,
             estado:0  , 
-            imagen:null   
+            imagen:"https://logos-download.com/wp-content/uploads/2017/07/Microsoft_.NET_logo.png"   
         }
     }  
   ];

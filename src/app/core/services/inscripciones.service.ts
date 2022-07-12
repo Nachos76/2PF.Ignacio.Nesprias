@@ -12,8 +12,6 @@ export class InscripcionesService {
   inscripcionSeleccionado$ = new BehaviorSubject<Inscripcion | null>(null);
   inscripciones$ = new BehaviorSubject<Inscripcion[]>(this.listaInscripciones);
 
-  inscripcionLogueado:Inscripcion = this.listaInscripciones[1]//Mock a manejar con el servicio de login
-
   constructor() {}
 
   agregarInscripcion(inscripcion: Inscripcion) {
@@ -21,8 +19,20 @@ export class InscripcionesService {
     this.inscripciones$.next(this.listaInscripciones);
   }
 
-  obtenerInscripcions() {
-    return this.inscripciones$.asObservable();
+  obtenerInscripciones(nombre?: string) {
+    return this.inscripciones$
+      .asObservable()
+      .pipe(
+        map((inscripciones) =>
+          nombre
+            ? inscripciones.filter((inscripcion) =>
+                (inscripcion.curso.nombre + ' ' + inscripcion.curso.id)
+                  .toLowerCase()
+                  .includes(nombre.toLowerCase().trim())
+              )
+            : inscripciones
+        )
+      );
   }
 
   obtenerInscripcionSeleccionado() {
@@ -35,29 +45,49 @@ export class InscripcionesService {
     );
   }
 
-  seleccionarInscripcionLogueado() {
-    let itemIndex = this.listaInscripciones.findIndex(item => item.id == this.inscripcionLogueado.id);
+  seleccionarInscripcionxId(id?: number) {
+    let index = this.listaInscripciones.findIndex((item) => item.id == id);
     this.inscripcionSeleccionado$.next(
-      itemIndex !== undefined ? this.listaInscripciones[itemIndex] : null
+      index !== undefined ? this.listaInscripciones[index] : null
     );
   }
 
   borrarInscripcionporIndice(index?: number) {
-    this.listaInscripciones = this.listaInscripciones.filter((_, i) => index != i);
+    this.listaInscripciones = this.listaInscripciones.filter(
+      (_, i) => index != i
+    );
+    this.inscripciones$.next(this.listaInscripciones);
+  }
+
+  borrarInscripcionporId(id?: number) {
+    let index = this.listaInscripciones.findIndex((item) => item.id == id);
+    this.listaInscripciones = this.listaInscripciones.filter(
+      (_, i) => index != i
+    );
     this.inscripciones$.next(this.listaInscripciones);
   }
 
   editarInscripcion(inscripcion: Inscripcion) {
-    let itemIndex = this.listaInscripciones.findIndex(item => item.id == inscripcion.id);
-    this.listaInscripciones[itemIndex]=inscripcion;
+    let itemIndex = this.listaInscripciones.findIndex(
+      (item) => item.id == inscripcion.id
+    );
+    this.listaInscripciones[itemIndex] = inscripcion;
     this.inscripciones$.next(this.listaInscripciones);
   }
 
-  // buscarinscripcionxNombre(nombre: string) {
-  //   return of(this.listainscripciones).pipe(
+  // buscarInscripcionxAlumno(nombre: string) {
+  //   return of(this.listaInscripciones).pipe(
   //     map((inscripcions) =>
   //       inscripcions.filter((inscripcion) =>
-  //         (inscripcion.nombre + ' ' + inscripcion.apellido + ' ' + inscripcion.email + ' ' + inscripcion.rol + ' ' + inscripcion.id)
+  //         (
+  //           inscripcion.alumno.nombre +
+  //           ' ' +
+  //           inscripcion.alumno.apellido +
+  //           ' ' +
+  //           inscripcion.alumno.email +
+  //           ' ' +
+  //           inscripcion.alumno.id
+  //         )
   //           .toLowerCase()
   //           .includes(nombre.toLowerCase())
   //       )
@@ -68,7 +98,21 @@ export class InscripcionesService {
   //   );
   // }
 
-  obtenerSiguienteId(){
-    return Math.max(...this.listaInscripciones.map(o => o.id + 1))
+  // buscarInscripcionxCurso(nombre: string) {
+  //   return of(this.listaInscripciones).pipe(
+  //     map((inscripcions) =>
+  //       inscripcions.filter((inscripcion) =>
+  //         (inscripcion.curso.nombre + ' ' + inscripcion.curso.id)
+  //           .toLowerCase()
+  //           .includes(nombre.toLowerCase())
+  //       )
+  //     ),
+  //     catchError((error) => {
+  //       throw new Error(error);
+  //     })
+  //   );
+  // }
+  obtenerSiguienteId() {
+    return Math.max(...this.listaInscripciones.map((o) => o.id + 1));
   }
 }

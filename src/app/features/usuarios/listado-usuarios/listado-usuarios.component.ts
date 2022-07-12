@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -18,7 +19,7 @@ export class ListadoUsuariosComponent implements OnInit {
   displayedColumnsTable = ['id', 'nombre', 'email', 'rol', 'actions'];
   tableDataSource$: Observable<MatTableDataSource<Usuario>> | undefined;
 
-  // userSelect: Usuario | null = null;
+  buscador = new FormControl();
 
   susbcriptions: Subscription = new Subscription();
 
@@ -34,6 +35,11 @@ export class ListadoUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.buscador.valueChanges.subscribe((nombre: string) => {
+      this.tableDataSource$ = this.usuarioService
+        .obtenerUsuarios(nombre)
+        .pipe(map((usuario) => new MatTableDataSource<Usuario>(usuario)));
+    });
   }
 
   seleccionarUsuario(id?: number) {
@@ -71,13 +77,4 @@ export class ListadoUsuariosComponent implements OnInit {
     this.usuarioService.seleccionarUsuarioxIndice(-1);
     this.router.navigate(['/usuarios/form-usuarios']);
   }
-
-  buscar(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.tableDataSource$ = this.usuarioService.buscarUsuarioxNombre(filterValue).pipe(
-      map((usuarios) => new MatTableDataSource<Usuario>(usuarios))
-    );
-
-  }
-
 }

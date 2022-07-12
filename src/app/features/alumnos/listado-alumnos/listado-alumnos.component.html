@@ -19,14 +19,14 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
               #
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
               {{ row.id }}
@@ -45,7 +45,7 @@ The actual rendered columns are set as a property on the row definition" -->
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
               <div class="flex items-center">
@@ -63,14 +63,14 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
               Descripcion
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
               {{ row.descripcion }}
@@ -81,17 +81,17 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
               Edad
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
-            <div appContarHoy [fn]="row.fechaNacimiento"></div>
+              <div appContarHoy [fn]="row.fechaNacimiento"></div>
             </td>
           </ng-container>
 
@@ -100,17 +100,17 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
-            Cumple
+              Cumple
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
-            {{ row.fechaNacimiento | date: "dd/MM" }}
+              {{ row.fechaNacimiento | date: "dd/MM" }}
             </td>
           </ng-container>
           <!-- Conocimientos -->
@@ -118,17 +118,17 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
-            Conocimientos
+              Conocimientos
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
-            <app-badge-list [items]="row.conocimientos"></app-badge-list>
+              <app-badge-list [items]="row.conocimientos"></app-badge-list>
             </td>
           </ng-container>
           <!-- Cursos -->
@@ -136,17 +136,17 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
-            Cursos
+              Cursos
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 "
+              class="px-5 py-5"
               (click)="seleccionar(row.id)"
             >
-            <app-badge-list [items]="row.cursos"></app-badge-list>
+              <app-badge-list [items]="row.cursos"></app-badge-list>
             </td>
           </ng-container>
           <!-- Estado -->
@@ -154,33 +154,26 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
               Estado
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class="px-5 py-5 whitespace-nowrap "
+              class="px-5 py-5 whitespace-nowrap"
               (click)="seleccionar(row.id)"
             >
-              
               <span
                 [ngClass]="
-                  row.estado == 1
-                    ? 'text-green-900'
-                    : 'text-orange-900'
+                  row.estado == 1 ? 'text-green-900' : 'text-orange-900'
                 "
                 class="relative inline-block px-3 py-1 font-medium leading-tight"
               >
                 <span
                   aria-hidden
-                  [ngClass]="
-                    row.estado == 1
-                      ? 'bg-green-200'
-                      : 'bg-orange-200'
-                  "
-                  class="absolute inset-0 opacity-50 rounded-full "
+                  [ngClass]="row.estado == 1 ? 'bg-green-200' : 'bg-orange-200'"
+                  class="absolute inset-0 opacity-50 rounded-full"
                 ></span>
                 <span class="relative">{{ row.estado | visEstado }}</span>
               </span>
@@ -191,7 +184,7 @@ The actual rendered columns are set as a property on the row definition" -->
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="px-5 py-3  text-primary-100 uppercase font-medium"
+              class="px-5 py-3 text-primary-100 uppercase font-medium"
             >
               <label for="buscador" class="sr-only">Buscar</label>
               <div class="relative w-full">
@@ -203,14 +196,14 @@ The actual rendered columns are set as a property on the row definition" -->
                 <input
                   type="text"
                   id="buscador"
-                  class="bg-primary-50 border border-primary-300 text-primary-900 text-sm rounded-lg focus:primary-secondary-500 focus:border-secondary-500 block w-full pl-10 p-2.5 dark:bg-primary-700 dark:border-primary-600 dark:placeholder-primary-400 dark:text-white dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
+                  class="max-w-fit w-full bg-primary-50 border border-primary-300 text-primary-900 text-sm rounded-lg focus:primary-secondary-500 focus:border-secondary-500 block  pl-10 p-2.5 dark:bg-primary-700 dark:border-primary-600 dark:placeholder-primary-400 dark:text-white dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
                   placeholder=""
-                  required
-                  (keyup)="buscar($event)"
+                  matInput
+                  [formControl]="buscador"
                 />
               </div>
             </th>
-            <td mat-cell *matCellDef="let row" class="px-5 py-5">
+            <td mat-cell *matCellDef="let row" class="px-5 py-5 text-center" style ="min-width: 180px;">
               <button
                 mat-icon-button
                 [matMenuTriggerFor]="appMenu"
@@ -259,7 +252,7 @@ The actual rendered columns are set as a property on the row definition" -->
             <td
               class="mat-cell"
               [attr.colspan]="displayedColumnsTable.length"
-              class="px-5 py-3  text-danger-300 uppercase font-medium text-center"
+              class="px-5 py-3 text-danger-300 uppercase font-medium text-center"
             >
               No hay datos para mostrar.
             </td>
@@ -269,14 +262,3 @@ The actual rendered columns are set as a property on the row definition" -->
     </div>
   </div>
 </div>
-
-<!-- <app-grilla #grilla
-  [titulo]="titulo"
-  [datos]="alumnos"
-  (enviarSeleccionado)="seleccionarAlumno($event)"
-  (eliminarSeleccionado)="eliminarAlumno($event)"
-  (actualizarSeleccionado)="actualizarAlumno($event)"
-  (agregarSeleccionado)="agregarAlumno($event)"
-></app-grilla>
-
-<app-detalle-alumno #DetalleModal></app-detalle-alumno> -->

@@ -3,7 +3,6 @@ import { BehaviorSubject, catchError, map, of, Subject } from 'rxjs';
 import { CURSOS } from 'src/app/data/mock-cursos';
 import { Curso } from 'src/app/models/curso.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,8 +18,20 @@ export class CursosService {
     this.cursos$.next(this.listaCursos);
   }
 
-  obtenerCursos() {
-    return this.cursos$.asObservable();
+  obtenerCursos(nombre?: string) {
+    return this.cursos$
+      .asObservable()
+      .pipe(
+        map((cursos) =>
+          nombre
+            ? cursos.filter((curso) =>
+                (curso.nombre + ' ' + curso.id)
+                  .toLowerCase()
+                  .includes(nombre.toLowerCase().trim())
+              )
+            : cursos
+        )
+      );
   }
 
   obtenerCursoSeleccionado() {
@@ -34,7 +45,7 @@ export class CursosService {
   }
 
   seleccionarCursoxId(id?: number) {
-    let index = this.listaCursos.findIndex(item => item.id == id);
+    let index = this.listaCursos.findIndex((item) => item.id == id);
     this.cursoSeleccionado$.next(
       index !== undefined ? this.listaCursos[index] : null
     );
@@ -46,34 +57,33 @@ export class CursosService {
   }
 
   borrarCursoporId(id?: number) {
-    let index = this.listaCursos.findIndex(item => item.id == id);
+    let index = this.listaCursos.findIndex((item) => item.id == id);
     this.listaCursos = this.listaCursos.filter((_, i) => index != i);
     this.cursos$.next(this.listaCursos);
   }
 
   editarCurso(curso: Curso) {
-    let itemIndex = this.listaCursos.findIndex(item => item.id == curso.id);
-    this.listaCursos[itemIndex]=curso;
+    let itemIndex = this.listaCursos.findIndex((item) => item.id == curso.id);
+    this.listaCursos[itemIndex] = curso;
     this.cursos$.next(this.listaCursos);
   }
 
-  buscarCursoxNombre(nombre: string) {
-    return of(this.listaCursos).pipe(
-      map((curso) =>
-      curso.filter((curso) =>
-          (curso.nombre + ' ' +  curso.id)
-            .toLowerCase()
-            .includes(nombre.toLowerCase())
-        )
-      ),
-      catchError((error) => {
-        throw new Error(error);
-      })
-    );
-  }
+  // buscarCursoxNombre(nombre: string) {
+  //   return of(this.listaCursos).pipe(
+  //     map((curso) =>
+  //     curso.filter((curso) =>
+  //         (curso.nombre + ' ' +  curso.id)
+  //           .toLowerCase()
+  //           .includes(nombre.toLowerCase())
+  //       )
+  //     ),
+  //     catchError((error) => {
+  //       throw new Error(error);
+  //     })
+  //   );
+  // }
 
- 
-  obtenerSiguienteId(){
-    return Math.max(...this.listaCursos.map(o => o.id + 1))
+  obtenerSiguienteId() {
+    return Math.max(...this.listaCursos.map((o) => o.id + 1));
   }
 }

@@ -11,8 +11,6 @@ export class AlumnosService {
   alumnosSeleccionado$ = new BehaviorSubject<Alumno | null>(null);
   alumnos$ = new BehaviorSubject<Alumno[]>(this.listaAlumnos);
 
-
-
   constructor() {}
 
   agregarAlumno(alumnos: Alumno) {
@@ -20,8 +18,28 @@ export class AlumnosService {
     this.alumnos$.next(this.listaAlumnos);
   }
 
-  obtenerAlumnos() {
-    return this.alumnos$.asObservable();
+  obtenerAlumnos(nombre?: string) {
+    return this.alumnos$
+      .asObservable()
+      .pipe(
+        map((alumnos) =>
+          nombre
+            ? alumnos.filter((alumno) =>
+                (
+                  alumno.nombre +
+                  ' ' +
+                  alumno.apellido +
+                  ' ' +
+                  alumno.email +
+                  ' ' +
+                  alumno.id
+                )
+                  .toLowerCase()
+                  .includes(nombre.toLowerCase().trim())
+              )
+            : alumnos
+        )
+      );
   }
 
   obtenerAlumnoSeleccionado() {
@@ -35,7 +53,7 @@ export class AlumnosService {
   }
 
   seleccionarAlumnoxId(id?: number) {
-    let index = this.listaAlumnos.findIndex(item => item.id == id);
+    let index = this.listaAlumnos.findIndex((item) => item.id == id);
     this.alumnosSeleccionado$.next(
       index !== undefined ? this.listaAlumnos[index] : null
     );
@@ -47,33 +65,41 @@ export class AlumnosService {
   }
 
   borrarAlumnoporId(id?: number) {
-    let index = this.listaAlumnos.findIndex(item => item.id == id);
+    let index = this.listaAlumnos.findIndex((item) => item.id == id);
     this.listaAlumnos = this.listaAlumnos.filter((_, i) => index != i);
     this.alumnos$.next(this.listaAlumnos);
   }
 
   editarAlumno(alumno: Alumno) {
-    let itemIndex = this.listaAlumnos.findIndex(item => item.id == alumno.id);
-    this.listaAlumnos[itemIndex]=alumno;
+    let itemIndex = this.listaAlumnos.findIndex((item) => item.id == alumno.id);
+    this.listaAlumnos[itemIndex] = alumno;
     this.alumnos$.next(this.listaAlumnos);
   }
 
-  buscarAlumnoxNombre(nombre: string) {
-    return of(this.listaAlumnos).pipe(
-      map((alumnos) =>
-        alumnos.filter((alumno) =>
-          (alumno.nombre + ' ' + alumno.apellido + ' ' + alumno.email + ' ' + alumno.id)
-            .toLowerCase()
-            .includes(nombre.toLowerCase())
-        )
-      ),
-      catchError((error) => {
-        throw new Error(error);
-      })
-    );
-  }
+  // buscarAlumnoxNombre(nombre: string) {
+  //   return of(this.listaAlumnos).pipe(
+  //     map((alumnos) =>
+  //       alumnos.filter((alumno) =>
+  //         (
+  //           alumno.nombre +
+  //           ' ' +
+  //           alumno.apellido +
+  //           ' ' +
+  //           alumno.email +
+  //           ' ' +
+  //           alumno.id
+  //         )
+  //           .toLowerCase()
+  //           .includes(nombre.toLowerCase())
+  //       )
+  //     ),
+  //     catchError((error) => {
+  //       throw new Error(error);
+  //     })
+  //   );
+  // }
 
-  obtenerSiguienteId(){
-    return Math.max(...this.listaAlumnos.map(o => o.id + 1))
+  obtenerSiguienteId() {
+    return Math.max(...this.listaAlumnos.map((o) => o.id + 1));
   }
 }

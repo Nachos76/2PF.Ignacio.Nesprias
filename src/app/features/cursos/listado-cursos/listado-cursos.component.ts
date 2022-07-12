@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -14,12 +15,20 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/Dialogs/confir
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListadoCursosComponent implements OnInit {
-
   titulo: string = 'Listado de Cursos';
-  displayedColumnsTable = ['id', 'nombre', 'descripcion', 'cantClases','capacidad','fechaInicio','estado', 'actions'];
+  displayedColumnsTable = [
+    'id',
+    'nombre',
+    'descripcion',
+    'cantClases',
+    'capacidad',
+    'fechaInicio',
+    'estado',
+    'actions',
+  ];
   tableDataSource$: Observable<MatTableDataSource<Curso>> | undefined;
 
-  cursoSelect: Curso | null = null;
+  buscador = new FormControl();
 
   susbcriptions: Subscription = new Subscription();
 
@@ -27,14 +36,18 @@ export class ListadoCursosComponent implements OnInit {
     private cursosService: CursosService,
     private dialog: MatDialog,
     private router: Router
-    ) { 
-      this.tableDataSource$ = this.cursosService.obtenerCursos().pipe(
-        tap((cursos) => console.log(cursos)),
-        map((cursos) => new MatTableDataSource<Curso>(cursos))
-      );
-    }
+  ) {
+    this.tableDataSource$ = this.cursosService
+      .obtenerCursos()
+      .pipe(map((cursos) => new MatTableDataSource<Curso>(cursos)));
+  }
 
   ngOnInit(): void {
+    this.buscador.valueChanges.subscribe((nombre: string) => {
+      this.tableDataSource$ = this.cursosService
+        .obtenerCursos(nombre)
+        .pipe(map((curso) => new MatTableDataSource<Curso>(curso)));
+    });
   }
 
   agregar() {
@@ -51,9 +64,7 @@ export class ListadoCursosComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: 'Confirmar borrado',
-      message:
-        'Esta seguro que desea eliminar el registro de  ' +
-        item?.nombre ,
+      message: 'Esta seguro que desea eliminar el registro de  ' + item?.nombre,
     };
     const confirmDialog = this.dialog.open(
       ConfirmDialogComponent,
@@ -70,13 +81,4 @@ export class ListadoCursosComponent implements OnInit {
     this.cursosService.seleccionarCursoxId(index);
     this.router.navigate(['/cursos/form']);
   }
-
-  buscar(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.tableDataSource$ = this.cursosService.buscarCursoxNombre(filterValue).pipe(
-      map((cursos) => new MatTableDataSource<Curso>(cursos))
-    );
-  }
-
-
 }

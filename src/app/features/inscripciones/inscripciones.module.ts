@@ -7,8 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ListadoInscripcionesComponent } from './listado-inscripciones/listado-inscripciones.component';
 import { DetalleInscripcionesComponent } from './detalle-inscripciones/detalle-inscripciones.component';
 import { FormularioInscripcionesComponent } from './formulario-inscripciones/formulario-inscripciones.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,9 @@ import { FormularioInscripcionesComponent } from './formulario-inscripciones/for
   imports: [
     CommonModule,
     InscripcionesRoutingModule,
+    ReactiveFormsModule,
     MaterialModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class InscripcionesModule { }
+export class InscripcionesModule {}
