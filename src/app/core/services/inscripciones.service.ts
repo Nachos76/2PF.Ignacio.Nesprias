@@ -75,43 +75,35 @@ export class InscripcionesService {
     this.inscripciones$.next(this.listaInscripciones);
   }
 
-  // buscarInscripcionxAlumno(nombre: string) {
-  //   return of(this.listaInscripciones).pipe(
-  //     map((inscripcions) =>
-  //       inscripcions.filter((inscripcion) =>
-  //         (
-  //           inscripcion.alumno.nombre +
-  //           ' ' +
-  //           inscripcion.alumno.apellido +
-  //           ' ' +
-  //           inscripcion.alumno.email +
-  //           ' ' +
-  //           inscripcion.alumno.id
-  //         )
-  //           .toLowerCase()
-  //           .includes(nombre.toLowerCase())
-  //       )
-  //     ),
-  //     catchError((error) => {
-  //       throw new Error(error);
-  //     })
-  //   );
-  // }
+  obtenerInscripcionesxAlumno(id?: number) {
+    return this.inscripciones$
+      .asObservable()
+      .pipe(
+        map((inscripciones) =>
+            id
+            ? inscripciones.filter((inscripcion) =>
+                (inscripcion.alumno.id===id)
+              )
+            : null
+        )
+      );
+  }
 
-  // buscarInscripcionxCurso(nombre: string) {
-  //   return of(this.listaInscripciones).pipe(
-  //     map((inscripcions) =>
-  //       inscripcions.filter((inscripcion) =>
-  //         (inscripcion.curso.nombre + ' ' + inscripcion.curso.id)
-  //           .toLowerCase()
-  //           .includes(nombre.toLowerCase())
-  //       )
-  //     ),
-  //     catchError((error) => {
-  //       throw new Error(error);
-  //     })
-  //   );
-  // }
+  obtenerInscripcionesxCurso(id?: number) {
+    return this.inscripciones$
+      .asObservable()
+      .pipe(
+        map((inscripciones) =>
+            id
+            ? inscripciones.filter((inscripcion) =>
+                (inscripcion.curso.id===id)
+              )
+            : null
+        )
+      );
+  }
+
+
   obtenerSiguienteId() {
     return Math.max(...this.listaInscripciones.map((o) => o.id + 1));
   }
