@@ -68,7 +68,6 @@ export const ALUMNOS: Alumno[] = [
     {   id: 5, 
         nombre:"Lucy",
         apellido: "Liu",
-        // edad:21,
         dni:"12345678",
         sexo:"Masculino",
         fechaNacimiento:"2001-06-04",

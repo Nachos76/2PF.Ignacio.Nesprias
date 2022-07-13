@@ -102,4 +102,11 @@ export class AlumnosService {
   obtenerSiguienteId() {
     return Math.max(...this.listaAlumnos.map((o) => o.id + 1));
   }
+
+  obtenerAlumnoxId(id: number) {
+    let index = this.listaAlumnos.findIndex((item) => item.id == id);
+    //return index !== undefined ? this.listaCursos[index] : null
+    return this.listaAlumnos[index] 
+    ;
+  }
 }

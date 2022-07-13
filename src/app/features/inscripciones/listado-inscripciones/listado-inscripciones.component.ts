@@ -35,6 +35,7 @@ export class ListadoInscripcionesComponent implements OnInit {
     this.tableDataSource$ = this.inscripcionesService
       .obtenerInscripciones()
       .pipe(
+        tap((inscripcion) => console.log(inscripcion)),
         map((inscripcion) => new MatTableDataSource<Inscripcion>(inscripcion))
       );
   }

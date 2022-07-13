@@ -11,25 +11,22 @@ import { AlumnosService } from 'src/app/core/services/alumnos.service';
 
 @Component({
   templateUrl: './formulario-inscripciones.component.html',
-  styleUrls: ['./formulario-inscripciones.component.scss']
+  styleUrls: ['./formulario-inscripciones.component.scss'],
 })
 export class FormularioInscripcionesComponent implements OnInit {
   titulo: string = 'Ingresar nueva inscripción';
   susbcriptions: Subscription = new Subscription();
 
-  formulario = this.fb.group(
-    {
-      id: [''],
-      curso: ['', [Validators.required, Validators.minLength(3)]],
-      alumno: ['', [Validators.required, Validators.minLength(3)]],
-      fecha: [''],
-      estado: ['', [Validators.required]]
-    }
-  );
+  formulario = this.fb.group({
+    id: [''],
+    cursoId: ['', [Validators.required]],
+    alumnoId: ['', [Validators.required]],
+    fecha: [''],
+    estado: ['', [Validators.required]],
+  });
 
-  cursosOPT$!: Observable<Curso[]>
-  alumnosOPT$!:Observable<Alumno[]>
-
+  cursosOPT$!: Observable<Curso[]>;
+  alumnosOPT$!: Observable<Alumno[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -37,17 +34,13 @@ export class FormularioInscripcionesComponent implements OnInit {
     private inscripcionesService: InscripcionesService,
     private cursosService: CursosService,
     private alumnosService: AlumnosService
-  ) { 
+  ) {
     this.cursosOPT$ = this.cursosService
-    .obtenerCursos()
-    .pipe(
-      map((curso) => curso)
-    );
+      .obtenerCursos()
+      .pipe(map((curso) => curso));
     this.alumnosOPT$ = this.alumnosService
-    .obtenerAlumnos()
-    .pipe(
-      map((alumno) => alumno)
-    );
+      .obtenerAlumnos()
+      .pipe(map((alumno) => alumno));
   }
 
   ngOnDestroy() {
@@ -55,11 +48,13 @@ export class FormularioInscripcionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.susbcriptions.add(
+    this.susbcriptions.add(
       this.inscripcionesService.obtenerInscripcionSeleccionado().subscribe({
         next: (inscripcion) => {
           if (inscripcion) {
             this.formulario.patchValue(inscripcion);
+            this.formulario.get('cursoId')?.setValue(inscripcion.curso.id);
+            this.formulario.get('alumnoId')?.setValue(inscripcion.alumno.id);
           } else {
             this.formulario.reset();
           }
@@ -71,12 +66,13 @@ export class FormularioInscripcionesComponent implements OnInit {
     );
   }
 
-
   cancelar() {
     this.router.navigate(['/inscripciones']);
   }
 
   agregarInscripcion(inscripcion: Inscripcion) {
+    inscripcion.curso = this.cursosService.obtenerCursoxId(this.formulario.get('cursoId')!.value);
+    inscripcion.alumno = this.alumnosService.obtenerAlumnoxId(this.formulario.get('alumnoId')!.value);
     if (inscripcion.id) {
       //es usuario existente
       this.inscripcionesService.editarInscripcion(inscripcion);
@@ -92,9 +88,5 @@ export class FormularioInscripcionesComponent implements OnInit {
   volver(): void {
     this.router.navigate(['/inscripciones']);
   }
-
-}
-function Inscripcion(inscripcion: any, Inscripcion: any) {
-  throw new Error('Function not implemented.');
 }
 

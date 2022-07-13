@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, of, Subject } from 'rxjs';
+import { filter, BehaviorSubject, catchError, map, of, Subject } from 'rxjs';
 import { CURSOS } from 'src/app/data/mock-cursos';
 import { Curso } from 'src/app/models/curso.model';
 
@@ -68,22 +68,14 @@ export class CursosService {
     this.cursos$.next(this.listaCursos);
   }
 
-  // buscarCursoxNombre(nombre: string) {
-  //   return of(this.listaCursos).pipe(
-  //     map((curso) =>
-  //     curso.filter((curso) =>
-  //         (curso.nombre + ' ' +  curso.id)
-  //           .toLowerCase()
-  //           .includes(nombre.toLowerCase())
-  //       )
-  //     ),
-  //     catchError((error) => {
-  //       throw new Error(error);
-  //     })
-  //   );
-  // }
-
   obtenerSiguienteId() {
     return Math.max(...this.listaCursos.map((o) => o.id + 1));
+  }
+
+  obtenerCursoxId(id: number) {
+    let index = this.listaCursos.findIndex((item) => item.id == id);
+    //return index !== undefined ? this.listaCursos[index] : null
+    return this.listaCursos[index] 
+    ;
   }
 }

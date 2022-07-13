@@ -2,7 +2,6 @@ export interface Alumno {
     id:number   //id del alumno
     nombre:string   //nombre del alumno
     apellido:string  //apellido del alumno
-    // edad:number //edad del alumno
     dni:string     //dni del alumno
     sexo:string    //sexo del alumno
     fechaNacimiento:string  //fecha de nacimiento del alumno
@@ -14,6 +13,4 @@ export interface Alumno {
     cursos:string[]   //cursos del alumno
     imagen:string|null   //imagen del alumno
     descripcion?:string   //descripcion/presentacion del alumno
-    password?:string
-    confirmPassword?:string
 }
