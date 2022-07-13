@@ -12,7 +12,7 @@
     >
       <div class="flex flex-row justify-center p-2">
         <div
-          class="md:flex no-wrap md:-mx-2 rounded-lg overflow-hidden bg-primary-50 dark:bg-default-600 px-5 py-6"
+          class="md:flex no-wrap md:-mx-2 rounded-lg  bg-primary-50 dark:bg-default-600 px-5 py-6"
         >
           <!-- Left Side -->
           <div class="w-full md:w-3/12 md:mx-2">
@@ -23,7 +23,9 @@
                 <img
                   class="h-auto w-full mx-auto"
                   src="{{
-                    alumno?.imagen ? reemplazarURL(alumno?.imagen) : defaultImagen
+                    alumno?.imagen
+                      ? reemplazarURL(alumno?.imagen)
+                      : defaultImagen
                   }}"
                   alt=""
                 />
@@ -38,7 +40,8 @@
               <h3
                 class="text-primary-600 dark:text-default-100 font-lg text-semibold leading-6"
               >
-                <span appContarHoy [fn]="alumno?.fechaNacimiento"></span>  <span> años</span>
+                <span appContarHoy [fn]="alumno?.fechaNacimiento"></span>
+                <span> años</span>
               </h3>
               <p
                 class="text-sm text-primary-500 dark:text-default-100 hover:text-primary-600 leading-6"
@@ -122,12 +125,8 @@
                     </div>
                   </div>
                   <div class="grid grid-cols-2">
-                    <div class="px-4 py-2 font-semibold">
-                      
-                    </div>
-                    <div class="px-4 py-2">
-                      
-                    </div>
+                    <div class="px-4 py-2 font-semibold"></div>
+                    <div class="px-4 py-2"></div>
                   </div>
                   <div class="grid grid-cols-1 col-span-2">
                     <div class="px-4 py-2 font-semibold">Conocimientos</div>
@@ -146,74 +145,176 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <!-- End of about section -->
 
             <div class="my-4"></div>
 
-            <!-- Experience and education -->
-            <!-- <div class="rounded-lg overflow-hidden bg-white dark:bg-default-700 p-3 shadow-sm">
-  
-                  <div class="grid grid-cols-2">
-                      <div>
-                          <div class="flex items-center space-x-2 font-semibold text-primary-700 dark:text-default-100 leading-8 mb-3">
-                              <span clas="text-green-500">
-                                  <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                      stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                  </svg>
-                              </span>
-                              <span class="tracking-wide">Experience</span>
-                          </div>
-                          <ul class="list-inside space-y-2">
-                              <li>
-                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
-                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                              </li>
-                              <li>
-                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
-                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                              </li>
-                              <li>
-                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
-                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                              </li>
-                              <li>
-                                  <div class="text-primary-600 dark:text-default-100">Owner at Her Company Inc.</div>
-                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                              </li>
-                          </ul>
+            <!-- Detalle de cursos -->
+            <div
+              class="rounded-lg overflow-hidden bg-white dark:bg-default-700 p-3 shadow-sm"
+            >
+              <div
+                class="flex items-center space-x-2 font-semibold text-primary-900 dark:text-default-100 leading-8"
+              >
+                <mat-icon clas="text-prymary-500 dark:text-default-100"
+                  >cast_for_education</mat-icon
+                >
+                <span class="tracking-wide">Cursos</span>
+              </div>
+              <table
+                mat-table
+                [dataSource]="(tableDataSource$ | async)!"
+                class="mat-elevation-z8 w-full rounded-lg overflow-hidden mb-1"
+              >
+                <!-- ID Definition -->
+                <ng-container matColumnDef="id">
+                  <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="px-5 py-3 text-primary-100 uppercase font-medium"
+                  >
+                    #
+                  </th>
+                  <td mat-cell *matCellDef="let row" class="px-5 py-5">
+                    {{ row.id }}
+                  </td>
+                </ng-container>
+
+                <!-- Nombre -->
+                <ng-container matColumnDef="nombre">
+                  <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="px-5 py-3 text-primary-100 uppercase font-medium"
+                  >
+                    Nombre
+                  </th>
+                  <td mat-cell *matCellDef="let row" class="px-5 py-5">
+                    <div class="flex items-center">
+                      <app-avatar [imagen]="row.curso.imagen"></app-avatar>
+                      <div class="ml-3">
+                        <div class="font-semibold">
+                          {{ row.curso.nombre }}
+                        </div>
                       </div>
-                      <div>
-                          <div class="flex items-center space-x-2 font-semibold text-primary-700 dark:text-default-100 leading-8 mb-3">
-                              <span clas="text-green-500">
-                                  <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                      stroke="currentColor">
-                                      <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                      <path fill="#fff"
-                                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                                  </svg>
-                              </span>
-                              <span class="tracking-wide">Education</span>
-                          </div>
-                          <ul class="list-inside space-y-2">
-                              <li>
-                                  <div class="text-primary-600 dark:text-default-100">Masters Degree in Oxford</div>
-                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                              </li>
-                              <li>
-                                  <div class="text-primary-600 dark:text-default-100">Bachelors Degreen in LPU</div>
-                                  <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                              </li>
-                          </ul>
+                    </div>
+                  </td>
+                </ng-container>
+                <!-- Descripcion -->
+                <ng-container matColumnDef="descripcion">
+                  <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="px-5 py-3 text-primary-100 uppercase font-medium"
+                  >
+                    Descripcion
+                  </th>
+                  <td mat-cell *matCellDef="let row" class="px-5 py-5">
+                    {{ row.curso.descripcion }}
+                  </td>
+                </ng-container>
+                <!-- fechaInicio -->
+                <ng-container matColumnDef="fechaInicio">
+                  <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="px-5 py-3 text-primary-100 uppercase font-medium"
+                  >
+                    Fecha de Inicio
+                  </th>
+                  <td mat-cell *matCellDef="let row" class="px-5 py-5">
+                    {{ row.curso.fechaInicio | date }}
+                  </td>
+                </ng-container>
+
+                <!-- Estado -->
+                <ng-container matColumnDef="estado">
+                  <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="px-5 py-3 text-primary-100 uppercase font-medium"
+                  >
+                    Estado
+                  </th>
+                  <td mat-cell *matCellDef="let row" class="px-5 py-5">
+                    {{ row.estado | visEstado }}
+                  </td>
+                </ng-container>
+                <!--Acciones-->
+                <ng-container matColumnDef="actions">
+                  <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="px-5 py-3 text-primary-100 uppercase font-medium"
+                  >
+                    <label for="buscador" class="sr-only">Buscar</label>
+                    <div class="relative w-full">
+                      <div
+                        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                      >
+                        <mat-icon>search</mat-icon>
                       </div>
-                  </div>
-                 
-              </div> -->
+                      <input
+                        type="text"
+                        id="buscador"
+                        class="max-w-fit w-full bg-primary-50 border border-primary-300 text-primary-900 text-sm rounded-lg focus:primary-secondary-500 focus:border-secondary-500 block pl-10 p-2.5 dark:bg-primary-700 dark:border-primary-600 dark:placeholder-primary-400 dark:text-white dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
+                        placeholder=""
+                        matInput
+                        [formControl]="buscador"
+                      />
+                    </div>
+                  </th>
+                  <td
+                    mat-cell
+                    *matCellDef="let row"
+                    class="px-5 py-5 text-center"
+                    style="min-width: 180px"
+                  >
+                    <button
+                      mat-icon-button
+                      [matMenuTriggerFor]="appMenu"
+                      aria-label=""
+                    >
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #appMenu="matMenu">
+                      <button
+                        mat-menu-item
+                        (click)="eliminar(row)"
+                        class="text-primary-800 font-medium dark:text-default-100"
+                      >
+                        <mat-icon
+                          class="text-primary-800 text-lg dark:text-default-100"
+                          >delete</mat-icon
+                        >
+                        <span>Eliminar</span>
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+
+                <tr
+                  mat-header-row
+                  *matHeaderRowDef="displayedColumnsTable"
+                  class="w-full bg-primary-800 dark:bg-default-700 text-primary-300 uppercase font-semibold tracking-wider text-xs text-left border-b-2 border-primary-200 h-8"
+                ></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumnsTable"
+                  class="border-b border-gray-200 bg-white dark:bg-default-600 text-sm text-primary-900 cursor-pointer"
+                ></tr>
+                <tr class="mat-row" *matNoDataRow>
+                  <td
+                    class="mat-cell"
+                    [attr.colspan]="displayedColumnsTable.length"
+                    class="px-5 py-3 text-danger-300 uppercase font-medium text-center"
+                  >
+                    No hay datos para mostrar.
+                  </td>
+                </tr>
+              </table>
+            </div>
             <!-- End of profile tab -->
           </div>
         </div>

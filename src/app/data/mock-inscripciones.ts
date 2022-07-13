@@ -87,16 +87,15 @@ export const INSCRIPCIONES: Inscripcion[] = [
             cursos:["Desarrollo Web"],
             descripcion:"Buscando aprender para desarrollarme profesionalmente."
         },
-        curso:{   
-            id:100  , 
-            nombre:"Angular a fondo"   ,
-            descripcion:"Posta, a fondo, 16 meses de curso, si no salis armando tu propop framework, es porque no fuiste a fondo", 
-            fechaInicio:"2022-07-01", 
-            cantClases:366, 
-            precio:1520 ,
-            capacidad:10 ,
+        curso:{   id:104  , 
+            nombre:"Backend .Net, Api y mas V2"   ,
+            descripcion:"Ahora si, al fondo, al fondo, vemos que pasa detras de la cortina", 
+            fechaInicio:"2022-07-15", 
+            cantClases:32, 
+            precio:500 ,
+            capacidad:35 ,
             estado:1  , 
-            imagen:null   
+            imagen:"https://i0.wp.com/windtux.com/wp-content/uploads/2017/10/net-framework-logo.jpg?w=1000&ssl=1"   
         }
     },
     {   id: 10004, 

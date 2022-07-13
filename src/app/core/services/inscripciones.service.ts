@@ -75,7 +75,7 @@ export class InscripcionesService {
     this.inscripciones$.next(this.listaInscripciones);
   }
 
-  obtenerInscripcionesxAlumno(id?: number) {
+  obtenerInscripcionesxAlumno(id?: number,nombre?: string) {
     return this.inscripciones$
       .asObservable()
       .pipe(
@@ -84,12 +84,21 @@ export class InscripcionesService {
             ? inscripciones.filter((inscripcion) =>
                 (inscripcion.alumno.id===id)
               )
-            : null
-        )
+            : undefined
+        ),
+        map((inscripciones) =>
+        nombre
+          ? inscripciones?.filter((inscripcion) =>
+              (inscripcion.curso.nombre + ' ' + inscripcion.curso.id)
+                .toLowerCase()
+                .includes(nombre.toLowerCase().trim())
+            )
+          : inscripciones
+      )
       );
   }
 
-  obtenerInscripcionesxCurso(id?: number) {
+  obtenerInscripcionesxCurso(id?: number, nombre?: string) {
     return this.inscripciones$
       .asObservable()
       .pipe(
@@ -98,8 +107,17 @@ export class InscripcionesService {
             ? inscripciones.filter((inscripcion) =>
                 (inscripcion.curso.id===id)
               )
-            : null
-        )
+            : undefined
+        ),
+        map((inscripciones) =>
+        nombre
+          ? inscripciones?.filter((inscripcion) =>
+              (inscripcion.alumno.nombre + ' '  + inscripcion.alumno.apellido + ' ' + inscripcion.alumno.id)
+                .toLowerCase()
+                .includes(nombre.toLowerCase().trim())
+            )
+          : inscripciones
+      )
       );
   }
 

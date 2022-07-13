@@ -22,7 +22,7 @@ export class FormularioCursosComponent implements OnInit {
     {
       id: [''],
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      fechaInicio: [''],
+      fechaInicio: ['', [Validators.required, this.fechaValidator]],
       cantClases: ['', [Validators.required, Validators.min(1)]],
       precio: ['',[Validators.required, Validators.min(1)]],
       capacidad: ['',[Validators.required, Validators.min(1)]],
@@ -79,4 +79,9 @@ export class FormularioCursosComponent implements OnInit {
   volver(): void {
     this.router.navigate(['/cursos']);
   }
+
+  fechaValidator(g: AbstractControl) {
+    return new Date(g.value).getTime() > Date.now() ? null : { invalid: true };
+  }
+
 }

@@ -54,8 +54,8 @@ export class ListadoInscripcionesComponent implements OnInit {
     this.router.navigate(['/inscripciones/form']);
   }
 
-  seleccionar(index?: number) {
-    this.inscripcionesService.seleccionarInscripcionxId(index);
+  seleccionar(id?: number) {
+    this.inscripcionesService.seleccionarInscripcionxId(id);
     this.router.navigate(['/inscripciones/detalle']);
   }
 
@@ -76,26 +76,9 @@ export class ListadoInscripcionesComponent implements OnInit {
     });
   }
 
-  editar(index?: number) {
-    this.inscripcionesService.seleccionarInscripcionxId(index);
+  editar(id?: number) {
+    this.inscripcionesService.seleccionarInscripcionxId(id);
     this.router.navigate(['/inscripciones/form']);
   }
 
-  // buscarxAlumno(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.tableDataSource$ = this.inscripcionesService
-  //     .obtenerInscripciones(filterValue)
-  //     .pipe(
-  //       map((inscripcion) => new MatTableDataSource<Inscripcion>(inscripcion))
-  //     );
-  // }
-
-  // buscarxCurso(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.tableDataSource$ = this.inscripcionesService
-  //     .buscarInscripcionxCurso(filterValue)
-  //     .pipe(
-  //       map((inscripcion) => new MatTableDataSource<Inscripcion>(inscripcion))
-  //     );
-  // }
 }

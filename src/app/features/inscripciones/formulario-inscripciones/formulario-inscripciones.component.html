@@ -16,7 +16,7 @@
         >
           <div class="grid xl:grid-cols-2 xl:gap-6">
             <div class="relative z-0 w-full mb-6 group">
-              <input
+              <!-- <input
                 type="text"
                 name="curso"
                 id="curso"
@@ -40,10 +40,42 @@
                 *ngIf="formulario.get('curso')?.errors?.['minlength'] && formulario.get('curso')?.touched "
               >
                 Longitud mínima de 3 carácteres</span
+              > -->
+
+              <mat-form-field
+                class="w-full bg-transparent -mt-6 top-0.5"
+                appearance="standard"
               >
+                <mat-label>Curso</mat-label>
+                <mat-select
+                  formControlName="curso"
+                  required
+                  class="text-primary-800 text-sm dark:text-default-200"
+                >
+                  <mat-option
+                    *ngFor="let r of cursosOPT$ | async"
+                    [value]="r"
+                    class="text-primary-800 text-sm dark:text-default-200 dark:bg-default-800"
+                  >
+                  <div class="flex items-center">
+                    <app-avatar [imagen]="r.imagen"></app-avatar>
+                    <div class="ml-3">
+                      <div class="font-semibold">
+                        {{ r.nombre }}
+                      </div>
+                    </div>
+                  </div>
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="formulario.get('curso')?.errors?.['required'] && formulario.get('curso')?.touched  "
+                  class="mt-2 text-sm text-red-600 dark:text-red-500"
+                  >Curso es requerido</mat-error
+                >
+              </mat-form-field>
             </div>
             <div class="relative z-0 w-full mb-6 group">
-              <input
+              <!-- <input
                 type="text"
                 name="alumno"
                 id="alumno"
@@ -67,7 +99,41 @@
                 *ngIf="formulario.get('alumno')?.errors?.['minlength'] && formulario.get('alumno')?.touched "
               >
                 Longitud mínima de 3 carácteres</span
+              > -->
+              <mat-form-field
+                class="w-full bg-transparent -mt-6 top-0.5"
+                appearance="standard"
               >
+                <mat-label>Alumno</mat-label>
+                <mat-select
+                  formControlName="alumno"
+                  required
+                  class="text-primary-800 text-sm dark:text-default-200"
+                >
+                  <mat-option
+                    *ngFor="let r of alumnosOPT$ | async"
+                    [value]="r"
+                    class="text-primary-800 text-sm dark:text-default-200 dark:bg-default-800"
+                  >
+                  <div class="flex items-center">
+                    <app-avatar [imagen]="r.imagen"></app-avatar>
+                    <div class="ml-3">
+                      <div class="font-semibold">
+                        {{
+                          r.nombre
+                            | nombreApellido: r.apellido:"apellido"
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="formulario.get('estado')?.errors?.['required'] && formulario.get('estado')?.touched  "
+                  class="mt-2 text-sm text-red-600 dark:text-red-500"
+                  >Estado es requerido</mat-error
+                >
+              </mat-form-field>
             </div>
           </div>
 
@@ -84,7 +150,7 @@
               <label
                 for="fecha"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >Fecha<span class="text-red-600"> *</span></label
+                >Fecha</label
               >
             </div>
             <div class="relative z-0 w-full mb-6 group">
